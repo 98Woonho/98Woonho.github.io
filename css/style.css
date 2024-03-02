@@ -267,6 +267,7 @@ textarea {
     .about__content-details-para {
       font-size: 1.8rem;
       color: grey;
+      white-space: pre-line;
       max-width: 60rem;
       line-height: 1.7;
       margin-bottom: 1rem; }
@@ -611,16 +612,6 @@ textarea {
 .main-footer {
   background: #000;
   color: #fff; }
-  .main-footer__upper {
-    display: flex;
-    justify-content: space-between;
-    padding: 8rem 0; }
-    @media only screen and (max-width: 56.25em) {
-      .main-footer__upper {
-        padding: 6rem 0; } }
-    @media only screen and (max-width: 37.5em) {
-      .main-footer__upper {
-        display: block; } }
   .main-footer__row-1 {
     order: 2; }
     @media only screen and (max-width: 56.25em) {
