@@ -6,30 +6,22 @@ const navBar = {
 // Main Body SECTION
 const mainBody = {
   gradientColors: "#4484ce, #1ad7c0, #ff9b11, #9b59b6, #ff7f7f, #ecf0f1",
-  firstName: "Hashir",
-  middleName: "",
-  lastName: "Shoaib",
+  firstName: "Lee",
+  middleName: "Woon",
+  lastName: "Ho",
   message: " Passionate about changing the world with technology. ",
   icons: [
     {
       image: "fa-github",
-      url: "https://github.com/hashirshoaeb",
-    },
-    {
-      image: "fa-facebook",
-      url: "https://www.facebook.com/hashirshoaeb",
+      url: "https://github.com/98Woonho",
     },
     {
       image: "fa-instagram",
-      url: "https://www.instagram.com/hashirshoaeb/",
+      url: "https://www.instagram.com/w.ho_____/",
     },
     {
-      image: "fa-linkedin",
-      url: "https://www.linkedin.com/in/hashirshoaeb/",
-    },
-    {
-      image: "fa-twitter",
-      url: "https://www.twitter.com/hashirshoaeb/",
+      image: "fa-youtube",
+      url: "https://www.youtube.com/channel/UCfx7DRn0VNFK8uAGMemFNUA",
     },
   ],
 };
@@ -51,11 +43,11 @@ const mainBody = {
 const about = {
   show: true,
   heading: "About Me",
-  imageLink: require("../editable-stuff/hashirshoaeb.png"),
+  imageLink: require("../editable-stuff/woonho.jpg"),
   imageSize: 375,
   message:
     "My name is Hashir Shoaib. I’m a graduate of 2020 from National University of Sciences and Technology at Islamabad with a degree in Computer Engineering. I'm most passionate about giving back to the community, and my goal is to pursue this passion within the field of software engineering. In my free time I like working on open source projects.",
-  resume: "https://docs.google.com/document/d/13_PWdhThMr6roxb-UFiJj4YAFOj8e_bv3Vx9UHQdyBQ/edit?usp=sharing",
+    resume: "https://drive.google.com/file/d/1w4inORQtfjWkxVTzWZgHXGLV9KGcRu3_/view?usp=drive_link",
 };
 
 // PROJECTS SECTION
@@ -66,8 +58,8 @@ const about = {
 const repos = {
   show: true,
   heading: "Recent Projects",
-  gitHubUsername: "hashirshoaeb", //i.e."johnDoe12Gh"
-  reposLength: 4,
+  gitHubUsername: "98Woonho", //i.e."johnDoe12Gh"
+  reposLength: 6,
   specificRepos: [],
 };
 
@@ -100,24 +92,24 @@ const skills = {
   show: true,
   heading: "Skills",
   hardSkills: [
-    { name: "Python", value: 90 },
-    { name: "SQL", value: 75 },
-    { name: "Data Structures", value: 85 },
-    { name: "C/C++", value: 65 },
+    { name: "Java", value: 80 },
+    { name: "HTML", value: 70 },
+    { name: "CSS", value: 70 },
     { name: "JavaScript", value: 90 },
+    { name: "SpringBoot", value: 80 },
     { name: "React", value: 65 },
-    { name: "HTML/CSS", value: 55 },
-    { name: "C#", value: 80 },
+    { name: "Node.js", value: 65 },
+    { name: "MySQL", value: 80 },
   ],
   softSkills: [
-    { name: "Goal-Oriented", value: 80 },
-    { name: "Collaboration", value: 90 },
-    { name: "Positivity", value: 75 },
-    { name: "Adaptability", value: 85 },
-    { name: "Problem Solving", value: 75 },
-    { name: "Empathy", value: 90 },
-    { name: "Organization", value: 70 },
-    { name: "Creativity", value: 90 },
+    { name: "목표 지향", value: 80 },
+    { name: "협력", value: 90 },
+    { name: "긍정적 사고", value: 75 },
+    { name: "적응력", value: 85 },
+    { name: "문제 해결", value: 75 },
+    { name: "공감 능력", value: 90 },
+    { name: "조직력", value: 70 },
+    { name: "창의성", value: 90 },
   ],
 };
 
@@ -126,8 +118,8 @@ const getInTouch = {
   show: true,
   heading: "Get In Touch",
   message:
-    "I'm currently looking for full-time Software Engineering or Machine Learning opportunities! If you know of any positions available, if you have any questions, or if you just want to say hi, please feel free to email me at",
-  email: "hashirshoaeb@gmail.com",
+    "저는 현재 제 능력을 기여할 회사를 찾고 있습니다. 언제든 연락주세요!",
+  email: "lkj1150@gmail.com",
 };
 
 const experiences = {
