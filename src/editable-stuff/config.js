@@ -9,7 +9,7 @@ const mainBody = {
   firstName: "Lee",
   middleName: "Woon",
   lastName: "Ho",
-  message: " Passionate about changing the world with technology. ",
+  message: "자바 백엔드 개발자를 꿈꾸는 이운호입니다.",
   icons: [
     {
       image: "fa-github",
@@ -46,7 +46,7 @@ const about = {
   imageLink: require("../editable-stuff/woonho.jpg"),
   imageSize: 375,
   message:
-    "My name is Hashir Shoaib. I’m a graduate of 2020 from National University of Sciences and Technology at Islamabad with a degree in Computer Engineering. I'm most passionate about giving back to the community, and my goal is to pursue this passion within the field of software engineering. In my free time I like working on open source projects.",
+    "영남대학교 전자공학과를 졸업했습니다. 전공 수업에서 처음 접해본 코딩에 흥미를 가져, 개발자를 꿈꾸게 되었습니다. 졸업 후, 코리아IT아카데미에서 웹개발 과정을 통해 웹개발에 대한 지식을 쌓았고, 프로젝트를 통해 팀원들과의 원활한 소통과 협업으로 문제를 해결하는 능력을 기르게 되었으며, 백엔드 분야에 관심을 가지기 시작해서 지금은 백엔드 개발자를 꿈꾸고 있습니다. 주도적이고 창의적인 접근을 통해 현업에서 필요로 하는 솔루션을 제공하는 백엔드 개발자로서, 지속적인 성장과 혁신에 힘쓰고 있습니다.",
     resume: "https://drive.google.com/file/d/1w4inORQtfjWkxVTzWZgHXGLV9KGcRu3_/view?usp=drive_link",
 };
 
@@ -92,14 +92,14 @@ const skills = {
   show: true,
   heading: "Skills",
   hardSkills: [
-    { name: "Java", value: 80 },
-    { name: "HTML", value: 70 },
-    { name: "CSS", value: 70 },
-    { name: "JavaScript", value: 90 },
-    { name: "SpringBoot", value: 80 },
-    { name: "React", value: 65 },
-    { name: "Node.js", value: 65 },
-    { name: "MySQL", value: 80 },
+    { name: "Java", value: 85, description: "객체 지향 프로그래밍에 대해 이해하고 있습니다. 개발문서를 참고하여 원하는 기능을 개발할 수 있습니다."},
+    { name: "HTML", value: 70, description: "기본적인 구조의 페이지를 개발할 수 있습니다. 반응형 페이지 개발에 익숙해지기 위해 공부하고 있습니다." },
+    { name: "CSS", value: 70, description: "기본적이고 자주 사용되는 스타일을 페이지에 적용할 수 있습니다. 더 많은 스타일을 적용하기 위해 공부하고 있습니다."},
+    { name: "JavaScript", value: 90, description: "페이지에 다양한 이벤트 적용, 여러 방식으로 서버와의 통신을 할 수 있습니다. 비동기 통신을 통한 댓글 기능을 구현한 경험이 있습니다."},
+    { name: "SpringBoot", value: 80, description: "MVC 패턴을 이용하여 혼자 혹은 팀으로 웹서비스를 개발 할 수 있습니다. 다양한 SpringBoot 프로젝트 경험이 있습니다."},
+    { name: "React", value: 65, description: "페이지를 컴포넌트화 하여서 보다 쉽게 비동기 페이지를 구현할 수 있고, 간단한 웹 서비스를 구현한 경험이 있습니다." },
+    { name: "Node.js", value: 65, description: "다양한 기능에 걸맞는 CRUD를 구현할 수 있습니다." },
+    { name: "MySQL", value: 80, description: "다양한 프로젝트 경험으로 인해, 많은 DB를 설계해보았고, 정규화를 통해 효율적인 DB를 설계해본 경험이 있습니다. SQLD 자격증을 보유하고 있습니다." },
   ],
   softSkills: [
     { name: "목표 지향", value: 80 },
