@@ -100,7 +100,8 @@ const skills = {
     { name: "React", value: 65, description: "페이지를 컴포넌트화 하여서 보다 쉽게 비동기 페이지를 구현할 수 있고, 간단한 웹 서비스를 구현한 경험이 있습니다." },
     { name: "Node.js", value: 65, description: "다양한 기능에 걸맞는 CRUD를 구현할 수 있습니다." },
     { name: "DataBase", value: 80, description: "다양한 프로젝트 경험으로 인해, 많은 DB를 설계해보았고, 정규화를 통해 효율적인 DB를 설계해본 경험이 있습니다. SQLD 자격증을 보유하고 있습니다. MyBatis, JPA를 사용할 수 있고, MySQL, MariaDB 사용 경험이 있습니다." },
-    { name: "AWS", value:70, description: "문서를 참고하여 putty, jenkins를 함께 활용해 서버를 배포한 경험이 있습니다." }
+    { name: "AWS", value: 70, description: "문서를 참고하여 putty, jenkins를 함께 활용해 서버를 배포한 경험이 있습니다." },
+    { name: "Github", value: 75, description: "Github를 이용하여 프로젝트를 관리해본 경험이 다양하게 있습니다."}
   ],
   softSkills: [
     { name: "목표 지향", value: 80 },
