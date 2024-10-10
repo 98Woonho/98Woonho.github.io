@@ -21,7 +21,7 @@ export class aboutPage extends Component {
 					</section>
 
 					<section>
-						<Heading level="2">EXPERIENCE & EDUCATION</Heading>
+						<Heading level="2">EDUCATION</Heading>
 						<ExperienceWrap />
 					</section>
 				</StyledSkills>
