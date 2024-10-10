@@ -9,7 +9,7 @@ const portfolioData = {
 			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios", "BootStrap"],
 		},
 		{
-			name: "ITHotel",
+			name: "CoreMap",
 			period: "2024.02 - 2024.02",
 			github: "https://github.com/98Woonho/Coremap",
 			youtube: "https://www.youtube.com/watch?v=AOuMxil_MPQ",
