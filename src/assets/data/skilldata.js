@@ -27,9 +27,14 @@ const skillData = {
 		},
 		{
 			label: "SpringBoot",
-			detail: ["RESTful API를 구현할 수 있습니다.", "팀 혹은 개인으로 개발한 경험이 많습니다.", "JPA를 사용해 데이터베이스 연동을 할 수 있습니다."],
+			detail: ["RESTful API를 구현할 수 있습니다.", "팀 혹은 개인으로 개발한 경험이 많습니다.", "JDBC를 사용하여 데이터베이스와 연동하거나 ORM(JPA, Hibernate)을 활용한 데이터 처리 경험이 있습니다."],
 			icon: "fa-solid fa-power-off",
 		},
+		{
+			label: "Java",
+			detail: ["객체지향 프로그래밍(OOP)의 기본 원칙을 이해하고 설계에 활용할 수 있습니다.", "컬렉션 프레임워크를 활용하여 데이터를 효율적으로 처리할 수 있습니다.", "Java 8 이상의 스트림 API와 람다식을 활용하여 코드를 간결하고 효율적으로 작성할 수 있습니다."],
+			icon: "fa-brands fa-java"
+		}
 	],
 
 	experienceList: [
