@@ -32,10 +32,13 @@ const StyledSkillsWrap = styled.div`
 		cursor: default;
 		.skill-label {
 			margin-bottom: 10px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
 			i {
 				color: ${(props) => props.theme.mainColor};
 				padding-right: 10px;
-				font-size: 50px;
+				font-size: 30px;
 				vertical-align: text-top;
 			}
 		}
