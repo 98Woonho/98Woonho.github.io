@@ -24,7 +24,7 @@ class PortfolioMain extends Component {
 									)}
 									{list.link && (
   									<Link to={list.link}>
-    									<i className="fa-brands fa-globe"></i>
+    									<i class="fa-regular fa-earth-americas"></i>
   									</Link>
 									)}
 								</div>
