@@ -12,6 +12,11 @@ class PortfolioMain extends Component {
 						<div>
 							<div className="info-wrap">
 								<div className="link-wrap">
+									{list.link && (
+  									<Link to={list.link}>
+    									<i class="fa-solid fa-earth-americas"></i>
+  									</Link>
+									)}
 									{list.youtube && (
   									<Link to={list.youtube}>
     									<i className="fa-brands fa-youtube"></i>
@@ -20,11 +25,6 @@ class PortfolioMain extends Component {
 									{list.github && (
   									<Link to={list.github}>
     									<i className="fa-brands fa-github"></i>
-  									</Link>
-									)}
-									{list.link && (
-  									<Link to={list.link}>
-    									<i class="fa-regular fa-earth-americas"></i>
   									</Link>
 									)}
 								</div>
