@@ -38,6 +38,13 @@ const portfolioData = {
 			youtube: "https://www.youtube.com/watch?v=3Euis71PTQE",
 			description: "fullcalendar API를 활용한 todo-list 사이트를 개발하였습니다. 회원가입, 로그인, 캘린더를 통한 일정관리 기능이 구현되어 있습니다. 개발 인원은 1명입니다.",
 			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios", "JQuery"],
+		},
+		{
+			name: "LOLStats",
+			period: "2025.1 ~",
+			github: "https://github.com/98Woonho/LOLStats",
+			description: "라이엇 API를 이용한 League Of Legends 전적 및 정보 검색 사이트입니다. 현재 배포중이며, 개발 진행중입니다.",
+			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios"],
 		}
 	],
 };
