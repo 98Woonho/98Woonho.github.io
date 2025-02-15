@@ -43,6 +43,7 @@ const portfolioData = {
 			name: "LOLStats",
 			period: "2025.1 ~",
 			github: "https://github.com/98Woonho/LOLStats",
+			link: "http://lolstats.o-r.kr/",
 			description: "라이엇 API를 이용한 League Of Legends 전적 및 정보 검색 사이트입니다. 현재 배포중이며, 개발 진행중입니다.",
 			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios"],
 		}
