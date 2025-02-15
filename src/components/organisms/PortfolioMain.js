@@ -14,7 +14,7 @@ class PortfolioMain extends Component {
 								<div className="link-wrap">
 									{list.link && (
   									<Link to={list.link}>
-    									<i class="fa-solid fa-earth-americas"></i>
+    									<i className="fa-solid fa-earth-americas"></i>
   									</Link>
 									)}
 									{list.youtube && (
