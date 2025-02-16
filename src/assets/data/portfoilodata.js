@@ -9,14 +9,6 @@ const portfolioData = {
 			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios", "BootStrap"],
 		},
 		{
-			name: "CoreMap",
-			period: "2024.02 - 2024.02",
-			github: "https://github.com/98Woonho/Coremap",
-			youtube: "https://www.youtube.com/watch?v=AOuMxil_MPQ",
-			description: "운동시설 및 운동 컨텐츠의 접근성이 높아짐에 따라 운동에 관심을 가지는 사람들이 증가 하고 있음에 따라, 운동 자세를 알려주고, 게시판을 통해 다른 사람들과 정보 공유 및 질문을 나눌 수 있는 사이트를 개발 하였습니다. 개발 인원은 1명입니다.",
-			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios", "BootStrap"],
-		},
-		{
 			name: "WH-Cinema",
 			period: "2024.06 - 2024.07",
 			github: "https://github.com/98Woonho/WH-Cinema",
@@ -30,14 +22,6 @@ const portfolioData = {
 			github: "https://github.com/98Woonho/Healthy-grass",
 			description: "농축산물 쇼핑몰을 개발하였습니다. 로그인, 회원가입, 상품 구매, 상품 관리, 리뷰 작성 등의 기능이 구현되어 있습니다. 개발 인원은 3명입니다.",
 			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios", "BootStrap"],
-		},
-		{
-			name: "PlanPartner",
-			period: "2024.03 - 2024.03",
-			github: "https://github.com/98Woonho/PlanPartner",
-			youtube: "https://www.youtube.com/watch?v=3Euis71PTQE",
-			description: "fullcalendar API를 활용한 todo-list 사이트를 개발하였습니다. 회원가입, 로그인, 캘린더를 통한 일정관리 기능이 구현되어 있습니다. 개발 인원은 1명입니다.",
-			tech: ["Html & CSS", "Javascript", "SpringBoot", "MySQL", "Axios", "JQuery"],
 		},
 		{
 			name: "LOLStats",
