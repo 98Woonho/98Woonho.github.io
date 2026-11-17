@@ -1,0 +1,48 @@
+# 포트폴리오를 빌드해 GitHub Pages에 배포한다.
+# 처음 한 번: 저장소 Settings > Pages > Build and deployment > Source 를 "GitHub Actions" 로 바꾼다.
+# 각 프로젝트 저장소의 showcase/ 와 npm 패키지에서 자료를 가져오므로, 프로젝트를 고친 뒤에는
+# Actions 탭에서 수동 실행하거나 매주 월요일 자동 실행을 기다리면 된다.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 1" # 매주 월요일 09:00 KST
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run showcase
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

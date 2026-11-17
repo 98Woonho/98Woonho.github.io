@@ -1,23 +1,14 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
+# build
+/dist
 
-# production
-/build
+# 빌드 때 각 프로젝트 저장소에서 가져와 생성하는 파일 (npm run showcase)
+/src/generated
+/public/showcase
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
+.env*.local
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*

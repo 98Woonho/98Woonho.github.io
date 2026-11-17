@@ -1,0 +1,10 @@
+{
+  "$comment": "포트폴리오에 소개할 MCP·Skill 프로젝트 목록. 각 저장소의 showcase/ 폴더(showcase.json, demos/*.json)를 빌드할 때 가져온다. --local 이면 local 경로를 쓴다.",
+  "projects": [
+    {
+      "repo": "98Woonho/korea-transit-mcp",
+      "ref": "main",
+      "local": "../mcp"
+    }
+  ]
+}
