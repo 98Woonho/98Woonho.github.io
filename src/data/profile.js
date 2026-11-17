@@ -4,11 +4,11 @@
 export const profile = {
   name: "이운호",
   nameEn: "Woonho Lee",
-  role: "Software Developer · AI Agent Tools",
+  role: "Software Developer",
   headline: ["여러 현장을 거쳐,", "지금은 코드로 문제를 풉니다."],
   intro: [
     "개발 외에도 여러 일을 경험하며, 기술보다 먼저 그것을 쓰는 사람이 무엇을 불편해하는지 보는 법을 배웠습니다.",
-    "지금은 실무 개발자로 일하면서, AI 에이전트가 실제 데이터를 다룰 수 있게 하는 도구(MCP)와 Skill을 만들고 있습니다.",
+    "지금은 실무 개발자로 일하며, 새로운 기술은 직접 만들어 보면서 익히고 있습니다.",
   ],
   email: "9woonho8@gmail.com",
   github: "https://github.com/98Woonho",
@@ -19,7 +19,7 @@ export const experience = [
     period: "2025 ~ 현재",
     title: "실무 개발자",
     org: "재직 중",
-    body: "현업에서 서비스를 개발하고 운영하며, 반복되는 업무를 자동화하는 도구를 만들고 있습니다.",
+    body: "현업에서 서비스를 개발하고 운영하고 있습니다.",
   },
   {
     period: "2024.05 - 2024.07",
