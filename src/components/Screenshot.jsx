@@ -4,7 +4,9 @@ export default function Screenshot({ image }) {
   return (
     <figure className={`shot ${device}`}>
       {src ? (
-        <img src={src} alt={caption} loading="lazy" />
+        <a href={src} target="_blank" rel="noopener" title="원본 크기로 보기">
+          <img src={src} alt={caption} loading="lazy" />
+        </a>
       ) : (
         <div className="shot-empty" role="img" aria-label={`${caption} 스크린샷 준비 중`}>
           <span>스크린샷 준비 중</span>

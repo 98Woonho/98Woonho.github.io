@@ -15,3 +15,6 @@
 .DS_Store
 .env*.local
 npm-debug.log*
+
+# 포트폴리오용 이미지
+/image
