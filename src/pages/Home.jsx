@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Demo from "../components/Demo.jsx";
 import { experience, profile, skills, webProjects, workProjects } from "../data/profile.js";
 import showcase from "../generated/showcase.json";
-import portrait from "../assets/profile.jpg";
 
 function Hero() {
   return (
@@ -28,7 +27,6 @@ function Hero() {
           </a>
         </div>
       </div>
-      <img className="portrait" src={portrait} alt={`${profile.name} 사진`} />
     </section>
   );
 }

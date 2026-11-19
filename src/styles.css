@@ -80,12 +80,11 @@ p { margin: 0 0 12px; }
 .eyebrow { color: var(--accent-text); font-weight: 600; margin: 0 0 12px; }
 
 /* 첫 화면 */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: center; padding-top: 96px; padding-bottom: 24px; }
+.hero { padding-top: 96px; padding-bottom: 24px; }
 .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 28px; font-weight: 800; }
 .hero h1 span { display: block; }
 .hero h1 span:last-child { color: var(--accent-strong); }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 640px; }
-.portrait { width: 300px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 62%; border-radius: 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.lead { font-size: 1.12rem; color: var(--muted); max-width: 720px; }
 
 /* 카드 */
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
@@ -188,14 +187,14 @@ details summary { cursor: pointer; color: var(--muted); margin: 6px 0 12px; }
 /* 반응형 */
 @media (max-width: 900px) {
   .gallery:has(.shot.phone) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 56px; }
-  .portrait { width: 200px; order: -1; border-radius: 22px; }
+  .hero { padding-top: 56px; }
   .featured { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "metrics" "demo"; padding: 22px; }
   .grid-3 { grid-template-columns: 1fr; }
   .detail-hero .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
+  .hero { padding-top: 48px; }
   .section { padding: 72px 16px 0; }
   .grid-2, .skills, .gallery { grid-template-columns: minmax(0, 1fr); }
   .gallery:has(.shot.phone) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
