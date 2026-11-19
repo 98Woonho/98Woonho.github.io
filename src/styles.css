@@ -161,8 +161,33 @@ details summary { cursor: pointer; color: var(--muted); margin: 6px 0 12px; }
 .prompts { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .prompts li { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
 
+/* 실무 프로젝트 */
+.badge { display: inline-block; margin-left: 6px; padding: 1px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 0.76rem; font-weight: 600; vertical-align: 1px; }
+.badge.live { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.work-grid { margin-bottom: 8px; }
+.work { display: flex; flex-direction: column; padding: 16px 16px 22px; }
+.work > :not(.work-cover) { padding: 0 8px; }
+.work .muted { flex: 1; }
+.work .links { margin-top: 14px; }
+.work .links a { text-decoration: none; font-weight: 600; font-size: 0.92rem; }
+.work-cover { display: grid; place-items: center; aspect-ratio: 16 / 10; margin-bottom: 16px; overflow: hidden; border-radius: 12px; border: 1px dashed var(--line); background: var(--bg-soft); color: var(--muted); font-size: 0.85rem; text-decoration: none; }
+.work-cover img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.role { margin: 0; }
+.role b { color: var(--text); }
+.tags.big li { font-size: 0.92rem; padding: 5px 14px; }
+.note-private { margin: 20px 0 0; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.shot { margin: 0; }
+.shot img, .shot-empty { display: block; width: 100%; border-radius: 14px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.shot-empty { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--bg-soft); border-style: dashed; box-shadow: none; color: var(--muted); font-size: 0.9rem; }
+.shot figcaption { margin-top: 10px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+.shot.phone { max-width: 240px; margin: 0 auto; width: 100%; }
+.shot.phone .shot-empty { aspect-ratio: 9 / 19.5; border-radius: 28px; }
+.gallery:has(.shot.phone) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
 /* 반응형 */
 @media (max-width: 900px) {
+  .gallery:has(.shot.phone) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 56px; }
   .portrait { width: 200px; order: -1; border-radius: 22px; }
   .featured { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "metrics" "demo"; padding: 22px; }
@@ -172,7 +197,8 @@ details summary { cursor: pointer; color: var(--muted); margin: 6px 0 12px; }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
   .section { padding: 72px 16px 0; }
-  .grid-2, .skills { grid-template-columns: minmax(0, 1fr); }
+  .grid-2, .skills, .gallery { grid-template-columns: minmax(0, 1fr); }
+  .gallery:has(.shot.phone) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .metrics b { font-size: 1.25rem; }
   .nav nav { gap: 14px; }
   .nav .nav-gh, .brand span { display: none; }

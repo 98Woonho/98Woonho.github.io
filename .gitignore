@@ -8,6 +8,9 @@
 /src/generated
 /public/showcase
 
+# 회사 프로젝트 원본 (분석용 로컬 복사본, 공개 저장소에 올리지 않는다)
+/MyProject
+
 # misc
 .DS_Store
 .env*.local

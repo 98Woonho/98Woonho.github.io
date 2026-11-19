@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Demo from "../components/Demo.jsx";
-import { experience, profile, skills, webProjects } from "../data/profile.js";
+import { experience, profile, skills, webProjects, workProjects } from "../data/profile.js";
 import showcase from "../generated/showcase.json";
 import portrait from "../assets/profile.jpg";
 
@@ -76,6 +76,34 @@ function FeaturedProject({ p }) {
   );
 }
 
+function WorkCard({ p }) {
+  const cover = p.images.find((i) => i.src);
+  return (
+    <article className="card work">
+      <Link to={`/work/${p.id}`} className="work-cover" aria-label={`${p.name} 자세히 보기`}>
+        {cover ? (
+          <img src={cover.src} alt={cover.caption} loading="lazy" />
+        ) : (
+          <span>스크린샷 준비 중</span>
+        )}
+      </Link>
+      <p className="kind">
+        {p.period} <span className={`badge ${p.status === "진행 중" ? "live" : ""}`}>{p.status}</span>
+      </p>
+      <h3>{p.name}</h3>
+      <p className="muted">{p.tagline}</p>
+      <ul className="tags">
+        {p.tech.slice(0, 6).map((t) => (
+          <li key={t}>{t}</li>
+        ))}
+      </ul>
+      <p className="links">
+        <Link to={`/work/${p.id}`}>자세히 보기 →</Link>
+      </p>
+    </article>
+  );
+}
+
 function WebProject({ p }) {
   return (
     <article className="card project">
@@ -105,6 +133,16 @@ export default function Home() {
 
       <section id="projects" className="wrap section">
         <h2>프로젝트</h2>
+        <h3 className="sub">실무 프로젝트</h3>
+        <p className="muted section-note">
+          현재 회사에서 맡은 사내 시스템입니다. 소스코드는 공개하지 않고, 역할과 만든 기능 위주로 정리했습니다.
+        </p>
+        <div className="grid-3 work-grid">
+          {workProjects.map((p) => (
+            <WorkCard key={p.id} p={p} />
+          ))}
+        </div>
+
         <h3 className="sub">AI 에이전트 도구</h3>
         <p className="muted section-note">
           AI 에이전트(Claude 등)가 실제 데이터를 조회하고 판단할 수 있게 만드는 MCP 서버와 Skill입니다. 서버는 LLM을 호출하지 않아 운영 비용이 들지 않습니다.
