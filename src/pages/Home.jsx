@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Demo from "../components/Demo.jsx";
-import { experience, profile, skills, webProjects, workProjects } from "../data/profile.js";
+import { experience, isLive, profile, skills, webProjects, workProjects } from "../data/profile.js";
 import showcase from "../generated/showcase.json";
 
 function Hero() {
@@ -78,15 +78,15 @@ function WorkCard({ p }) {
   const cover = p.images.find((i) => i.src);
   return (
     <article className="card work">
-      <Link to={`/work/${p.id}`} className="work-cover" aria-label={`${p.name} 자세히 보기`}>
+      <Link to={`/work/${p.id}`} className={`work-cover ${p.cover ? "text" : ""}`} aria-label={`${p.name} 자세히 보기`}>
         {cover ? (
           <img src={cover.src} alt={cover.caption} loading="lazy" />
         ) : (
-          <span>스크린샷 준비 중</span>
+          <span>{p.cover || "스크린샷 준비 중"}</span>
         )}
       </Link>
       <p className="kind">
-        {p.period} <span className={`badge ${p.status === "진행 중" ? "live" : ""}`}>{p.status}</span>
+        {p.period} <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
       </p>
       <h3>{p.name}</h3>
       <p className="muted">{p.tagline}</p>
@@ -136,9 +136,23 @@ export default function Home() {
           현재 회사에서 맡은 사내 시스템입니다. 소스코드는 공개하지 않고, 역할과 만든 기능 위주로 정리했습니다.
         </p>
         <div className="grid-3 work-grid">
-          {workProjects.map((p) => (
-            <WorkCard key={p.id} p={p} />
-          ))}
+          {workProjects
+            .filter((p) => p.group === "app")
+            .map((p) => (
+              <WorkCard key={p.id} p={p} />
+            ))}
+        </div>
+
+        <h3 className="sub">운영 · 인프라</h3>
+        <p className="muted section-note">
+          현장 장비에서 올라오는 데이터와 사내 서버를 운영하며 겪은 장애와 구축 작업입니다. 원인을 분석해 해결한 과정을 일지로 남겼고, 그중 대표 사례를 정리했습니다.
+        </p>
+        <div className="grid-2 work-grid">
+          {workProjects
+            .filter((p) => p.group === "ops")
+            .map((p) => (
+              <WorkCard key={p.id} p={p} />
+            ))}
         </div>
 
         <h3 className="sub">AI 에이전트 도구</h3>
