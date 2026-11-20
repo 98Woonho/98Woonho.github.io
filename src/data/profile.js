@@ -208,10 +208,10 @@ export const workProjects = [
     role: "운영 · 장애 원인 분석 및 개선 (일지로 문서화)",
     tech: ["Oracle", "PL/SQL", "Oracle Scheduler", "Windows Server", "FTP", "라이브러리 의존성 분석"],
     metrics: [
-      { value: "4개", label: "운영 영업소" },
       { value: "3분 → 1분", label: "GPS 수집 주기" },
-      { value: "4건", label: "문서화한 개선·장애 사례" },
-      { value: "3개월", label: "지난 GPS 데이터 자동 정리" },
+      { value: "Wi-Fi 자동 수집", label: "차고지 AP가 운행기록계를 탐지" },
+      { value: "매일 자정", label: "3개월 지난 GPS 데이터 자동 정리" },
+      { value: "1~3영업일", label: "장애 처리 소요 (3건)" },
     ],
     flows: [
       {
@@ -290,9 +290,9 @@ export const workProjects = [
     tech: ["Rocky Linux", "Nginx", "VMware", "IPsec VPN", "SFTP", "Python", "Shell · cron", "Oracle", "BCrypt", "GitHub"],
     metrics: [
       { value: "−78%", label: "통신 데이터량 (36.3MB → 7.9MB)" },
-      { value: "58영업일", label: "수집 환경 구축" },
-      { value: "2대", label: "VPN 운영 · 예비 이중화" },
-      { value: "2개 시스템", label: "비밀번호 동시 전환" },
+      { value: "평문 → BCrypt", label: "비밀번호 저장 방식 (두 시스템 동시 전환)" },
+      { value: "매일 자동", label: "교통카드 데이터 수신 · DB 적재" },
+      { value: "명령 1번", label: "앱 서버 빌드 · 배포" },
     ],
     flows: [
       {
