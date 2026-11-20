@@ -290,7 +290,7 @@ export const workProjects = [
     tech: ["Rocky Linux", "Nginx", "VMware", "IPsec VPN", "SFTP", "Python", "Shell · cron", "Oracle", "BCrypt", "GitHub"],
     metrics: [
       { value: "−78%", label: "통신 데이터량 (36.3MB → 7.9MB)" },
-      { value: "평문 → BCrypt", label: "비밀번호 저장 방식 (두 시스템 동시 전환)" },
+      { value: "평문 → BCrypt", label: "비밀번호 저장 방식" },
       { value: "매일 자동", label: "교통카드 데이터 수신 · DB 적재" },
       { value: "명령 1번", label: "앱 서버 빌드 · 배포" },
     ],
