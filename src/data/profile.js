@@ -184,10 +184,10 @@ export const workProjects = [
       },
     ],
     images: [
-      { src: "/work/legacy-erp/01-accident-report.png", caption: "사고보고서 등록", device: "desktop" },
-      { src: "/work/legacy-erp/02-accident-detail.png", caption: "사고세부 등록", device: "desktop" },
-      { src: "/work/legacy-erp/03-maintenance-log.png", caption: "정비일지", device: "desktop" },
-      { src: "/work/legacy-erp/04-part-mileage.png", caption: "부품 마일리지", device: "desktop" },
+      { caption: "사고보고서 등록", device: "desktop" },
+      { caption: "사고세부 등록", device: "desktop" },
+      { caption: "정비일지", device: "desktop" },
+      { caption: "부품 마일리지", device: "desktop" },
     ],
   },
 
