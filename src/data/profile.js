@@ -58,7 +58,6 @@ export const workProjects = [
     period: "2026.08 ~ 현재",
     status: "진행 중",
     kind: "웹 · 사내 프로젝트",
-    cover: "React 19 SPA → Spring Boot API → Oracle DB",
     tagline: "CS형 ERP를 웹으로 옮기고 고도화합니다.",
     summary:
       "기존 클라이언트-서버형 ERP의 기능을 React와 Spring Boot 기반 웹으로 이관하는 프로젝트입니다. 10개 시스템, 약 300개 화면 규모로 여러 개발자가 함께 진행하고 있고, 저는 교통안전관리 영역과 웹메일을 중심으로 맡았습니다.",
@@ -117,7 +116,6 @@ export const workProjects = [
     period: "2026.04 ~ 현재",
     status: "진행 중",
     kind: "모바일 · 사내 프로젝트",
-    cover: "Flutter 앱 → Spring Boot 서버 → ERP API 중계 · DB",
     tagline: "버스 승무사원과 관리직이 현장에서 쓰는 업무 앱입니다.",
     summary:
       "배차 확인, 전자결재, 급여명세, 사고 접수, 실시간 버스 위치를 한 앱에서 제공합니다. Flutter 앱과 Spring Boot 서버를 함께 개발했고, 제가 주 개발자로 전체 커밋의 약 84%를 맡았습니다.",
@@ -172,7 +170,6 @@ export const workProjects = [
     period: "2025.03 ~ 2026.08",
     status: "완료",
     kind: "데스크톱(CS) · 사내 프로젝트",
-    cover: "MiPlatform CS → Java Servlet → Oracle DB",
     tagline: "MiPlatform 기반 클라이언트-서버형 ERP를 개발하고 운영했습니다.",
     summary:
       "MiPlatform과 Servlet으로 만든 사내 ERP에서 교통사고와 정비 기능을 개발하고, 시스템 전반의 개선과 유지보수를 맡았습니다. 이때 업무 흐름을 익힌 경험이 이후 웹 ERP 전환의 바탕이 되었습니다.",
@@ -223,7 +220,6 @@ export const workProjects = [
     period: "2025.05 ~ 현재",
     status: "운영 중",
     kind: "운영 · 데이터 수집",
-    cover: "운행기록계 → AP → 수집 PC → 서버 → DB",
     tagline: "버스에서 DB까지, 현장 데이터가 끊기지 않게 지킵니다.",
     summary:
       "Wi-Fi 방식 운행기록계의 데이터가 차고지 AP와 수집 PC를 거쳐 전산실 서버로 전송되고, 분석 프로그램과 스케줄러를 통해 DB에 쌓입니다. 이 과정을 운영하면서 구간마다 생기는 장애의 원인을 분석해 해결하고, 모두 일지로 남겼습니다.",
@@ -298,27 +294,25 @@ export const workProjects = [
     images: [],
   },
   {
-    id: "infra-security",
+    id: "app-server",
     group: "ops",
-    name: "인프라 구축 · 보안 개선",
-    period: "2026.04 ~ 2026.11",
+    name: "모바일 앱 서버 구축",
     status: "완료",
-    kind: "인프라 · 보안",
-    cover: "앱 서버 · VPN 수집 환경 · 암호화 · 통신 최적화",
-    tagline: "서버를 세우고, 통신을 줄이고, 비밀번호를 지킵니다.",
+    kind: "인프라 · 서버 구축",
+    tagline: "외부에서 앱을 테스트하고 배포할 서버를 DMZ에 세웠습니다.",
     summary:
-      "모바일 앱을 위한 Linux 서버를 DMZ에 구축하고, 외부 교통카드 사업자와 VPN으로 연결해 데이터를 받는 수집 환경을 만들었습니다. 사내 시스템의 비밀번호 저장 방식과 통신 포맷도 개선했습니다.",
-    role: "구성 · 적용 · 문서화",
-    tech: ["Rocky Linux", "Nginx", "VMware", "IPsec VPN", "SFTP", "Python", "Shell · cron", "Oracle", "BCrypt", "GitHub"],
+      "모바일 앱을 외부에서 테스트하고 배포할 Linux 서버를 가상화 환경의 DMZ에 구축했습니다. 방화벽은 방향마다 용도를 나눠 열고, Nginx 리버스 프록시로 API 요청을 앱 서버에 전달합니다. 빌드부터 재시작까지는 배포 스크립트 하나로 묶었습니다.",
+    role: "서버 구성 · 배포 스크립트 · 문서화",
+    tech: ["Rocky Linux", "Nginx", "VMware", "Shell", "GitHub", "Spring Boot"],
     metrics: [
-      { value: "−78%", label: "통신 데이터량 (36.3MB → 7.9MB)" },
-      { value: "평문 → BCrypt", label: "비밀번호 저장 방식" },
-      { value: "매일 자동", label: "교통카드 데이터 수신 · DB 적재" },
-      { value: "명령 1번", label: "앱 서버 빌드 · 배포" },
+      { value: "2영업일", label: "서버 구축" },
+      { value: "명령 1번", label: "빌드 · 배포" },
+      { value: "방향별 4종", label: "용도를 나눈 방화벽 정책" },
+      { value: "DMZ", label: "리버스 프록시로 API 전달" },
     ],
     flows: [
       {
-        title: "앱 서버",
+        title: "앱 서버 접속 구조",
         steps: [
           { label: "스마트폰 · PC", sub: "외부 테스트 접속" },
           { label: "방화벽", sub: "방향별 정책" },
@@ -327,8 +321,43 @@ export const workProjects = [
           { label: "사내 DB", sub: "내부망" },
         ],
       },
+    ],
+    cases: [
       {
-        title: "교통카드 데이터 수집",
+        tag: "구축",
+        title: "방향별 방화벽 정책과 한 번에 끝나는 배포",
+        at: { flow: 0, step: 2 },
+        rows: [
+          { label: "배경", text: "외부에서 앱을 테스트하고 배포할 서버가 필요했습니다. 정식 배포 전이라 DMZ에 두고, 배포 때 보안 정책을 다시 검토하기로 했습니다." },
+          { label: "구성", text: "Rocky Linux 9를 가상화 환경에 설치하고 Nginx를 올렸습니다. 방화벽은 방향별로 용도를 나눠 열었습니다. 외부에서는 웹 포트만, 서버에서 사내로는 DB 포트만, 사내에서는 관리 접속만 허용하고, 서버에서 외부로는 패키지 설치와 외부 API 연동용으로 열었습니다. API 경로는 Nginx 리버스 프록시로 앱 서버에 전달합니다." },
+          { label: "배포", text: "GitHub 소스를 가져와 앱과 서버를 빌드하고 서버를 재시작하는 과정을 배포 스크립트 하나로 묶었습니다." },
+          { label: "결과", text: "서버 구축은 2영업일에 마쳤고, 이후 배포는 명령 한 번으로 끝납니다." },
+        ],
+      },
+    ],
+    process: "작업은 개발일지와 구축 완료 보고서로 남기고, 검토와 결재를 받았습니다.",
+    images: [],
+  },
+  {
+    id: "card-data-vpn",
+    group: "ops",
+    name: "교통카드 데이터 VPN 수집 환경",
+    status: "완료",
+    kind: "인프라 · 네트워크",
+    tagline: "교통카드 사업자의 일일 데이터를 VPN으로 받아 DB에 쌓습니다.",
+    summary:
+      "외부 교통카드 사업자와 IPsec VPN으로 연결해, 매일 보내오는 데이터를 수신하고 파싱해 사내 DB에 자동으로 적재하는 환경을 만들었습니다. 라우팅, 터널 구간의 패킷 크기, 장비 재부팅 때의 링크 문제까지 네트워크 구간을 직접 다뤘습니다.",
+    role: "네트워크 구성 · 수집 스크립트 · 문서화",
+    tech: ["IPsec VPN", "정적 라우팅", "SFTP", "Python", "Shell · cron", "Oracle"],
+    metrics: [
+      { value: "매일 자동", label: "데이터 수신 · DB 적재" },
+      { value: "2대", label: "VPN 장비 운영 · 예비 (같은 설정)" },
+      { value: "MSS · STP", label: "터널 · 링크 문제 대응" },
+      { value: "58영업일", label: "구축 기간" },
+    ],
+    flows: [
+      {
+        title: "교통카드 데이터 수집 구조",
         steps: [
           { label: "교통카드 사업자", sub: "일일 데이터 송신" },
           { label: "IPsec VPN", sub: "운영 · 예비 2대" },
@@ -340,19 +369,8 @@ export const workProjects = [
     cases: [
       {
         tag: "구축",
-        title: "모바일 앱 서버 구축 — 방향별 방화벽 정책과 한 번에 끝나는 배포",
-        at: { flow: 0, step: 2 },
-        rows: [
-          { label: "배경", text: "외부에서 앱을 테스트하고 배포할 서버가 필요했습니다. 정식 배포 전이라 DMZ에 두고, 배포 때 보안 정책을 다시 검토하기로 했습니다." },
-          { label: "구성", text: "Rocky Linux 9를 가상화 환경에 설치하고 Nginx를 올렸습니다. 방화벽은 방향별로 용도를 나눠 열었습니다. 외부에서는 웹 포트만, 서버에서 사내로는 DB 포트만, 사내에서는 관리 접속만 허용하고, 서버에서 외부로는 패키지 설치와 외부 API 연동용으로 열었습니다. API 경로는 Nginx 리버스 프록시로 앱 서버에 전달합니다." },
-          { label: "배포", text: "GitHub 소스를 가져와 앱과 서버를 빌드하고 서버를 재시작하는 과정을 배포 스크립트 하나로 묶었습니다." },
-          { label: "결과", text: "서버 구축은 2영업일에 마쳤고, 이후 배포는 명령 한 번으로 끝납니다." },
-        ],
-      },
-      {
-        tag: "구축",
-        title: "외부 교통카드 사업자와 VPN으로 연결하는 데이터 수집 환경",
-        at: { flow: 1, step: 1 },
+        title: "외부 사업자와 VPN으로 연결하는 데이터 수집 환경",
+        at: { flow: 0, step: 1 },
         rows: [
           { label: "배경", text: "교통카드 사업자가 매일 보내는 데이터를 안전하게 받아 DB에 쌓아야 했습니다." },
           { label: "네트워크", text: "수집 서버에 전용 경로를 지정하고 정적 라우팅으로 사업자 방향 트래픽이 VPN 장비를 지나가게 했습니다. 터널 암호화로 헤더가 커져 큰 패킷이 끊기는 문제는 MSS를 조정해 막았습니다. VPN 장비를 재부팅할 때 상위 스위치와 신호가 충돌해 링크가 막히지 않도록 STP를 끄는 조치도 했습니다." },
@@ -360,9 +378,45 @@ export const workProjects = [
           { label: "결과", text: "VPN 장비를 운영 1대, 예비 1대(같은 설정)로 두어 장애에 대비했습니다. 구축에 58영업일이 걸렸고 구축 완료 보고서로 마무리했습니다." },
         ],
       },
+    ],
+    process: "작업은 개발일지와 구축 완료 보고서로 남기고, 검토와 결재를 받았습니다.",
+    images: [],
+  },
+  {
+    id: "erp-security",
+    group: "ops",
+    name: "사내 ERP 보안 개선",
+    status: "완료",
+    kind: "보안 · 성능",
+    tagline: "평문으로 저장되던 비밀번호와 평문으로 오가던 통신을 걷어냈습니다.",
+    summary:
+      "사내 ERP의 보안 문제 두 가지를 고쳤습니다. DB에 평문으로 저장되던 비밀번호를 두 시스템이 함께 검증할 수 있는 BCrypt 해시로 바꿨고, 평문 XML로 오가던 통신을 바이너리로 바꿔 노출을 막고 데이터량을 약 78% 줄였습니다.",
+    role: "방식 비교 · 두 시스템 적용 · 검증",
+    tech: ["BCrypt", "Java Servlet", "Spring Boot", "MiPlatform", "Oracle", "패킷 분석"],
+    metrics: [
+      { value: "평문 → BCrypt", label: "비밀번호 저장 방식" },
+      { value: "−78%", label: "통신 데이터량 (36.3MB → 7.9MB)" },
+      { value: "2개 시스템", label: "같은 해시를 서로 검증" },
+      { value: "XML → 바이너리", label: "통신 포맷" },
+    ],
+    flows: [
+      {
+        title: "사내 ERP 로그인 · 통신 구조",
+        steps: [
+          { label: "CS 클라이언트", sub: "MiPlatform" },
+          { label: "통신 구간", sub: "XML → 바이너리" },
+          { label: "애플리케이션 서버", sub: "Servlet · BCrypt 검증" },
+          { label: "공용 사용자 테이블", sub: "BCrypt 해시 (60자)" },
+          { label: "웹 ERP", sub: "같은 해시로 검증" },
+        ],
+        note: "번호는 아래 사례가 적용된 구간입니다.",
+      },
+    ],
+    cases: [
       {
         tag: "보안",
         title: "평문 비밀번호를 BCrypt로 — 두 시스템을 한꺼번에 바꿔야 했던 이유",
+        at: { flow: 0, step: 3 },
         rows: [
           { label: "문제", text: "비밀번호가 DB에 평문으로 저장돼 있어, 조회 권한만 있으면 전 직원의 비밀번호를 볼 수 있었습니다. 게다가 두 시스템(레거시 ERP, 웹 ERP)이 같은 사용자 테이블을 쓰고 있어서 한쪽만 바꾸면 다른 쪽 로그인이 깨지는 구조였습니다." },
           { label: "방식 선정", text: "평문, 양방향 암호화(키가 유출되면 전체 노출), 빠른 해시(무차별 대입에 취약), BCrypt를 비교했습니다. 단방향이고 솔트가 들어 있으며 연산 비용을 조절할 수 있는 BCrypt를 골랐습니다." },
@@ -374,6 +428,7 @@ export const workProjects = [
       {
         tag: "보안 · 성능",
         title: "소스 없는 라이브러리를 건드리지 않고 통신 포맷을 바이너리로",
+        at: { flow: 0, step: 1 },
         rows: [
           { label: "발견", text: "플랫폼 벤더의 방문 교육 중, 송수신 데이터가 평문 XML이고 불필요한 메타데이터까지 실려 용량이 큰 것을 발견했습니다. 대량 조회 때 응답이 눈에 띄게 느렸습니다." },
           { label: "원인", text: "통신 방식을 정하는 설정이 라이브러리 안에 고정돼 있고 원본 소스가 없어, 직접 고치거나 다시 빌드할 수 없었습니다." },
@@ -382,7 +437,7 @@ export const workProjects = [
         ],
       },
     ],
-    process: "모든 작업은 개발일지와 구축 완료 보고서로 남기고, 검토와 결재를 받았습니다.",
+    process: "모든 작업은 개발일지로 남기고, 검토와 결재를 받았습니다.",
     images: [],
   },
 ];

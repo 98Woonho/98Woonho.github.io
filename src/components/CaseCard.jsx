@@ -3,7 +3,7 @@ export default function CaseCard({ c, index }) {
   return (
     <article className="card case">
       <header>
-        <span className="case-no">{index}</span>
+        {index != null && <span className="case-no">{index}</span>}
         <span className="tag">{c.tag}</span>
       </header>
       <h3>{c.title}</h3>

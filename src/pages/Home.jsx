@@ -74,54 +74,67 @@ function FeaturedProject({ p }) {
   );
 }
 
-function WorkCard({ p }) {
+/** 카드 상단의 미니 구조도. 스크린샷 대신 flows[0] 을 세로 레일로 그린다. */
+function ArchMini({ flows }) {
+  const [main, ...rest] = flows;
   return (
-    <article className="card work">
-      <div className="work-head">
+    <figure className="arch" aria-label={main.title}>
+      <figcaption className="arch-title">{main.title}</figcaption>
+      <ol className="arch-steps">
+        {main.steps.map((s) => (
+          <li key={s.label}>
+            <b>{s.label}</b>
+            {s.sub && (
+              <span className="arch-sub" title={s.sub}>
+                {s.sub}
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+      {rest.length > 0 && <p className="arch-more">+ {rest.map((f) => f.title).join(", ")} 구조</p>}
+    </figure>
+  );
+}
+
+const TAG_LIMIT = 5;
+
+function WorkCard({ p }) {
+  // 하나만 넘치면 "+1" 대신 그냥 다 보여준다
+  const limit = p.tech.length - TAG_LIMIT > 1 ? TAG_LIMIT : p.tech.length;
+  const extra = p.tech.length - limit;
+  return (
+    <article className="work">
+      {p.flows?.length > 0 ? <ArchMini flows={p.flows} /> : <div />}
+      <p className="work-meta">
         <span className="kind">{p.kind}</span>
-        <span className="period">
-          {p.period} <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
-        </span>
-      </div>
+        {p.period && <span className="period">{p.period}</span>}
+      </p>
       <h3 className="work-title">
         <Link to={`/work/${p.id}`}>{p.name}</Link>
+        <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
       </h3>
       <p className="muted work-tagline">{p.tagline}</p>
-
-      <div className="work-meta-list">
-        {p.role && (
-          <div className="work-role">
-            <span className="role-label">역할</span>
-            <span className="role-val">{p.role}</span>
-          </div>
-        )}
-
-        {p.cover && (
-          <div className="work-arch" title="시스템 구조">
-            <span className="arch-label">구조</span>
-            <span className="arch-val">{p.cover}</span>
-          </div>
-        )}
-      </div>
-
-      {p.metrics?.length > 0 && (
-        <ul className="work-metrics-mini">
-          {p.metrics.slice(0, 2).map((m) => (
-            <li key={m.label}>
-              <b>{m.value}</b>
-              <span>{m.label}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <ul className="tags">
-        {p.tech.slice(0, 6).map((t) => (
-          <li key={t}>{t}</li>
+      <p className="work-role">
+        <span>역할</span>
+        {p.role}
+      </p>
+      <ul className="work-metrics">
+        {(p.metrics || []).slice(0, 2).map((m) => (
+          <li key={m.label}>
+            <b>{m.value}</b>
+            <span>{m.label}</span>
+          </li>
         ))}
       </ul>
-      <p className="links">
-        <Link to={`/work/${p.id}`}>자세히 보기 →</Link>
+      <ul className="tags">
+        {p.tech.slice(0, limit).map((t) => (
+          <li key={t}>{t}</li>
+        ))}
+        {extra > 0 && <li className="more">+{extra}</li>}
+      </ul>
+      <p className="work-link" aria-hidden="true">
+        자세히 보기 <span>→</span>
       </p>
     </article>
   );
@@ -130,7 +143,9 @@ function WorkCard({ p }) {
 function WebProject({ p }) {
   return (
     <article className="card project">
-      <p className="kind">{p.period}</p>
+      <p className="work-meta">
+        <span className="period">{p.period}</span>
+      </p>
       <h3>{p.name}</h3>
       <p className="muted">{p.description}</p>
       <ul className="tags">

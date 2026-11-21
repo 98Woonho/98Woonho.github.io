@@ -27,7 +27,9 @@ export default function WorkDetail() {
   }, [p]);
 
   if (!p) return <Navigate to="/#projects" replace />;
-  const marks = marksByFlow(p);
+  // 사례가 1건이면 번호(①)와 흐름도 배지는 의미가 없어 생략한다
+  const single = p.cases?.length === 1;
+  const marks = single ? [] : marksByFlow(p);
 
   return (
     <main className="detail">
@@ -36,7 +38,7 @@ export default function WorkDetail() {
           ← 프로젝트 목록
         </Link>
         <p className="eyebrow">
-          {p.kind} · {p.period} <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
+          {[p.kind, p.period].filter(Boolean).join(" · ")} <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
         </p>
         <h1>{p.name}</h1>
         <p className="tagline">{p.tagline}</p>
@@ -65,10 +67,10 @@ export default function WorkDetail() {
 
       {p.cases?.length > 0 && (
         <section className="wrap section">
-          <h2>주요 사례</h2>
+          <h2>{single ? "작업 내용" : "주요 사례"}</h2>
           <div className="cases">
             {p.cases.map((c, i) => (
-              <CaseCard key={c.title} c={c} index={i + 1} />
+              <CaseCard key={c.title} c={c} index={single ? null : i + 1} />
             ))}
           </div>
         </section>

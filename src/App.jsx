@@ -31,6 +31,8 @@ export default function App() {
         {/* 이전 사이트 주소 호환 */}
         <Route path="/about" element={<Navigate to="/#experience" replace />} />
         <Route path="/projects" element={<Navigate to="/#projects" replace />} />
+        {/* 인프라 카드를 작업별로 나누기 전 주소 */}
+        <Route path="/work/infra-security" element={<Navigate to="/#projects" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
