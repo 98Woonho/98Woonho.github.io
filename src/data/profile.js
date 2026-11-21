@@ -49,8 +49,7 @@ export const skills = [
 export const isLive = (status) => status === "진행 중" || status === "운영 중";
 
 // 실무 프로젝트 (사내 개발, 소스 비공개). 회사명·서비스명은 일반화해서 적는다.
-// 스크린샷: public/work/<id>/ 에 파일을 넣고 images 항목에 src: "/work/<id>/01.png" 만 채우면 된다.
-// src 가 없으면 "준비 중" 자리표시만 보인다. 이름·사번·차량번호·금액·로고는 가리고 올릴 것.
+// 사내 시스템 보안을 위해 화면 스크린샷은 비공개하며, 시스템 아키텍처(flows)와 역할 위주로 정리한다.
 export const workProjects = [
   {
     id: "web-erp",
@@ -59,6 +58,7 @@ export const workProjects = [
     period: "2026.08 ~ 현재",
     status: "진행 중",
     kind: "웹 · 사내 프로젝트",
+    cover: "React 19 SPA → Spring Boot API → Oracle DB",
     tagline: "CS형 ERP를 웹으로 옮기고 고도화합니다.",
     summary:
       "기존 클라이언트-서버형 ERP의 기능을 React와 Spring Boot 기반 웹으로 이관하는 프로젝트입니다. 10개 시스템, 약 300개 화면 규모로 여러 개발자가 함께 진행하고 있고, 저는 교통안전관리 영역과 웹메일을 중심으로 맡았습니다.",
@@ -69,6 +69,18 @@ export const workProjects = [
       { value: "10개", label: "업무 시스템 (팀)" },
       { value: "약 280", label: "제 커밋 수" },
       { value: "진행 중", label: "상태" },
+    ],
+    flows: [
+      {
+        title: "웹 ERP 서비스 구조",
+        steps: [
+          { label: "사용자 브라우저", sub: "React 19 SPA" },
+          { label: "웹 서버 / 프록시", sub: "Nginx" },
+          { label: "API 백엔드", sub: "Spring Boot · JWT" },
+          { label: "업무 도메인", sub: "교통안전 · 웹메일 · 권한" },
+          { label: "사내 Oracle DB", sub: "MyBatis · JPA" },
+        ],
+      },
     ],
     highlights: [
       {
@@ -96,12 +108,7 @@ export const workProjects = [
         body: "기존 메뉴 코드를 기준으로 화면을 등록하는 구조, 탭형 작업 공간, 화면 권한을 클라이언트와 서버 양쪽에서 검증하는 방식 위에서 개발했습니다.",
       },
     ],
-    images: [
-      { caption: "교통안전 대시보드", device: "desktop" },
-      { caption: "개인별 안전운전 진단", device: "desktop" },
-      { caption: "사고관리 · 위치 선택", device: "desktop" },
-      { caption: "웹메일", device: "desktop" },
-    ],
+    images: [],
   },
   {
     id: "mobile-app",
@@ -110,6 +117,7 @@ export const workProjects = [
     period: "2026.04 ~ 현재",
     status: "진행 중",
     kind: "모바일 · 사내 프로젝트",
+    cover: "Flutter 앱 → Spring Boot 서버 → ERP API 중계 · DB",
     tagline: "버스 승무사원과 관리직이 현장에서 쓰는 업무 앱입니다.",
     summary:
       "배차 확인, 전자결재, 급여명세, 사고 접수, 실시간 버스 위치를 한 앱에서 제공합니다. Flutter 앱과 Spring Boot 서버를 함께 개발했고, 제가 주 개발자로 전체 커밋의 약 84%를 맡았습니다.",
@@ -120,6 +128,18 @@ export const workProjects = [
       { value: "약 105개", label: "API" },
       { value: "약 310", label: "제 커밋 수" },
       { value: "진행 중", label: "상태" },
+    ],
+    flows: [
+      {
+        title: "모바일 앱 연동 아키텍처",
+        steps: [
+          { label: "모바일 앱", sub: "Flutter · 승무/관리직" },
+          { label: "DMZ 웹 서버", sub: "Nginx 리버스 프록시" },
+          { label: "앱 백엔드", sub: "Spring Boot · FCM" },
+          { label: "기존 ERP API", sub: "업무 규칙 중계" },
+          { label: "사내 Oracle DB", sub: "내부망 연동" },
+        ],
+      },
     ],
     highlights: [
       {
@@ -143,12 +163,7 @@ export const workProjects = [
         body: "역할에 맞춰 메뉴를 구성하고, 승무사원은 로그인하면 배차 화면으로 바로 이동합니다. 푸시 알림을 누르면 로그인 상태를 확인한 뒤 해당 화면을 엽니다.",
       },
     ],
-    images: [
-      { caption: "로그인", device: "phone" },
-      { caption: "배차 현황", device: "phone" },
-      { caption: "사고 접수", device: "phone" },
-      { caption: "실시간 버스 위치", device: "phone" },
-    ],
+    images: [],
   },
   {
     id: "legacy-erp",
@@ -157,6 +172,7 @@ export const workProjects = [
     period: "2025.03 ~ 2026.08",
     status: "완료",
     kind: "데스크톱(CS) · 사내 프로젝트",
+    cover: "MiPlatform CS → Java Servlet → Oracle DB",
     tagline: "MiPlatform 기반 클라이언트-서버형 ERP를 개발하고 운영했습니다.",
     summary:
       "MiPlatform과 Servlet으로 만든 사내 ERP에서 교통사고와 정비 기능을 개발하고, 시스템 전반의 개선과 유지보수를 맡았습니다. 이때 업무 흐름을 익힌 경험이 이후 웹 ERP 전환의 바탕이 되었습니다.",
@@ -168,6 +184,17 @@ export const workProjects = [
       { value: "교통사고", label: "주요 기능 개발" },
       { value: "정비", label: "주요 기능 개발" },
       { value: "완료", label: "웹 ERP로 이관" },
+    ],
+    flows: [
+      {
+        title: "클라이언트-서버(CS) ERP 구조",
+        steps: [
+          { label: "CS 전용 클라이언트", sub: "사내 PC · MiPlatform" },
+          { label: "사내 인트라넷", sub: "전용망 통신" },
+          { label: "애플리케이션 서버", sub: "Java Servlet" },
+          { label: "사내 Oracle DB", sub: "교통사고 · 정비 데이터" },
+        ],
+      },
     ],
     highlights: [
       {
@@ -183,12 +210,7 @@ export const workProjects = [
         body: "기존 화면과 업무 규칙을 직접 다뤄 본 경험을 바탕으로, 웹 ERP에서 같은 업무를 옮길 때 무엇을 유지하고 무엇을 개선할지 판단할 수 있었습니다.",
       },
     ],
-    images: [
-      { caption: "사고보고서 등록", device: "desktop" },
-      { caption: "사고세부 등록", device: "desktop" },
-      { caption: "정비일지", device: "desktop" },
-      { caption: "부품 마일리지", device: "desktop" },
-    ],
+    images: [],
   },
 
   // ── 운영 · 인프라 (group: "ops") ──────────────────────────────────────────

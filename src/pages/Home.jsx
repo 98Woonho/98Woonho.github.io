@@ -75,21 +75,46 @@ function FeaturedProject({ p }) {
 }
 
 function WorkCard({ p }) {
-  const cover = p.images.find((i) => i.src);
   return (
     <article className="card work">
-      <Link to={`/work/${p.id}`} className={`work-cover ${p.cover ? "text" : ""}`} aria-label={`${p.name} 자세히 보기`}>
-        {cover ? (
-          <img src={cover.src} alt={cover.caption} loading="lazy" />
-        ) : (
-          <span>{p.cover || "스크린샷 준비 중"}</span>
+      <div className="work-head">
+        <span className="kind">{p.kind}</span>
+        <span className="period">
+          {p.period} <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
+        </span>
+      </div>
+      <h3 className="work-title">
+        <Link to={`/work/${p.id}`}>{p.name}</Link>
+      </h3>
+      <p className="muted work-tagline">{p.tagline}</p>
+
+      <div className="work-meta-list">
+        {p.role && (
+          <div className="work-role">
+            <span className="role-label">역할</span>
+            <span className="role-val">{p.role}</span>
+          </div>
         )}
-      </Link>
-      <p className="kind">
-        {p.period} <span className={`badge ${isLive(p.status) ? "live" : ""}`}>{p.status}</span>
-      </p>
-      <h3>{p.name}</h3>
-      <p className="muted">{p.tagline}</p>
+
+        {p.cover && (
+          <div className="work-arch" title="시스템 구조">
+            <span className="arch-label">구조</span>
+            <span className="arch-val">{p.cover}</span>
+          </div>
+        )}
+      </div>
+
+      {p.metrics?.length > 0 && (
+        <ul className="work-metrics-mini">
+          {p.metrics.slice(0, 2).map((m) => (
+            <li key={m.label}>
+              <b>{m.value}</b>
+              <span>{m.label}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
       <ul className="tags">
         {p.tech.slice(0, 6).map((t) => (
           <li key={t}>{t}</li>

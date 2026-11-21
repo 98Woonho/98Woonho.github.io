@@ -164,13 +164,30 @@ details summary { cursor: pointer; color: var(--muted); margin: 6px 0 12px; }
 .badge { display: inline-block; margin-left: 6px; padding: 1px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 0.76rem; font-weight: 600; vertical-align: 1px; }
 .badge.live { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .work-grid { margin-bottom: 8px; }
-.work { display: flex; flex-direction: column; padding: 16px 16px 22px; }
-.work > :not(.work-cover) { padding: 0 8px; }
-.work .muted { flex: 1; }
-.work .links { margin-top: 14px; }
-.work .links a { text-decoration: none; font-weight: 600; font-size: 0.92rem; }
-.work-cover { display: grid; place-items: center; aspect-ratio: 16 / 10; margin-bottom: 16px; overflow: hidden; border-radius: 12px; border: 1px dashed var(--line); background: var(--bg-soft); color: var(--muted); font-size: 0.85rem; text-decoration: none; }
-.work-cover img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.work { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s; }
+.work:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); transform: translateY(-2px); box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); }
+.work-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.work-head .kind { margin: 0; font-size: 0.82rem; font-weight: 700; color: var(--accent-text); }
+.work-head .period { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+.work-title { font-size: 1.25rem; margin: 0 0 8px; line-height: 1.35; }
+.work-title a { color: var(--text); text-decoration: none; transition: color 0.15s; }
+.work-title a:hover { color: var(--accent-text); }
+.work-tagline { margin: 0 0 14px; font-size: 0.92rem; line-height: 1.55; }
+.work-meta-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.work-role { display: flex; align-items: baseline; gap: 8px; font-size: 0.86rem; line-height: 1.5; background: var(--bg-soft); padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line); }
+.work-role .role-label { flex-shrink: 0; font-weight: 700; color: var(--accent-text); font-size: 0.78rem; }
+.work-role .role-val { color: var(--text); font-size: 0.84rem; }
+.work-arch { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; background: color-mix(in srgb, var(--accent) 7%, var(--bg-soft)); border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line)); padding: 6px 12px; border-radius: 10px; color: var(--accent-text); }
+.work-arch .arch-label { flex-shrink: 0; font-weight: 700; font-size: 0.75rem; padding: 1px 6px; border-radius: 4px; background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.work-arch .arch-val { font-family: "JetBrains Mono", "D2Coding", Consolas, monospace; font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.work-metrics-mini { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; list-style: none; padding: 0; margin: 0 0 14px; }
+.work-metrics-mini li { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+.work-metrics-mini b { display: block; font-size: 1.05rem; line-height: 1.25; color: var(--text); }
+.work-metrics-mini span { display: block; font-size: 0.76rem; color: var(--muted); line-height: 1.3; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.work .tags { margin-top: auto; padding-top: 6px; }
+.work .links { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.work .links a { text-decoration: none; font-weight: 600; font-size: 0.92rem; color: var(--accent-text); display: inline-flex; align-items: center; gap: 4px; transition: transform 0.15s; }
+.work .links a:hover { transform: translateX(3px); }
 .role { margin: 0; }
 .role b { color: var(--text); }
 .tags.big li { font-size: 0.92rem; padding: 5px 14px; }
@@ -183,10 +200,6 @@ details summary { cursor: pointer; color: var(--muted); margin: 6px 0 12px; }
 .shot.phone { max-width: 240px; margin: 0 auto; width: 100%; }
 .shot.phone .shot-empty { aspect-ratio: 9 / 19.5; border-radius: 28px; }
 .gallery:has(.shot.phone) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-/* 운영 · 인프라: 텍스트 표지, 흐름도, 사례 카드 */
-.work-cover.text { border-style: solid; background: color-mix(in srgb, var(--accent) 8%, var(--bg-soft)); }
-.work-cover.text span { padding: 0 24px; text-align: center; color: var(--accent-text); font-weight: 600; font-size: 0.95rem; line-height: 1.6; }
 .flow { margin: 0 0 32px; }
 .flow-title { margin-bottom: 14px; color: var(--muted); font-size: 0.9rem; font-weight: 600; }
 .flow-steps { display: flex; flex-wrap: wrap; align-items: stretch; gap: 14px 0; list-style: none; padding: 0; margin: 0; }

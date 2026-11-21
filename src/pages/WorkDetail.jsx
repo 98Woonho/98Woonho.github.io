@@ -88,14 +88,16 @@ export default function WorkDetail() {
         </section>
       )}
 
-      {p.images?.length > 0 && (
+      {p.images?.some((img) => img.src) && (
         <section className="wrap section">
           <h2>화면</h2>
           <p className="muted section-note">개인정보와 업무 데이터는 가리거나 예시 데이터로 바꾼 화면입니다.</p>
           <div className="gallery">
-            {p.images.map((img) => (
-              <Screenshot key={img.caption} image={img} />
-            ))}
+            {p.images
+              .filter((img) => img.src)
+              .map((img) => (
+                <Screenshot key={img.caption} image={img} />
+              ))}
           </div>
         </section>
       )}
