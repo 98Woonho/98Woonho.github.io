@@ -68,15 +68,17 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      <section className="wrap section">
-        <h2>데모</h2>
-        <p className="muted section-note">
-          실제 실행 기록을 재생하는 화면입니다. 이 사이트에서는 LLM을 실행하지 않습니다. 직접 질문해 보려면 <a href="#try">내 Claude에 설치</a>하세요.
-        </p>
-        {p.demos.map((d) => (
-          <Demo key={d.id} demo={d} />
-        ))}
-      </section>
+      {p.demos.length > 0 && (
+        <section className="wrap section">
+          <h2>데모</h2>
+          <p className="muted section-note">
+            실제 실행 기록을 재생하는 화면입니다. 이 사이트에서는 LLM을 실행하지 않습니다. 직접 질문해 보려면 <a href="#try">내 Claude에 설치</a>하세요.
+          </p>
+          {p.demos.map((d) => (
+            <Demo key={d.id} demo={d} />
+          ))}
+        </section>
+      )}
 
       <section className="wrap section">
         <h2>Skill</h2>
@@ -94,7 +96,7 @@ export default function ProjectDetail() {
 
       <section className="wrap section">
         <h2>MCP 도구 {p.toolCount}개</h2>
-        <p className="muted section-note">npm에 배포된 서버를 빌드할 때 실행해 받은 실제 목록입니다.</p>
+        <p className="muted section-note">{p.toolsNote ?? "npm에 배포된 서버를 빌드할 때 실행해 받은 실제 목록입니다."}</p>
         <div className="table-wrap">
           <table className="tools">
             <thead>
@@ -144,17 +146,19 @@ export default function ProjectDetail() {
           <h2>직접 써보기</h2>
           <p className="muted section-note">{install.note}</p>
           <ol className="steps">
-            <li>
-              <h3>공공데이터포털 인증키 발급 (무료)</h3>
-              <p className="muted">{install.key.body}</p>
-              <ul className="chips">
-                {install.key.links.map((l) => (
-                  <li key={l.url}>
-                    <a href={l.url}>{l.label} ↗</a>
-                  </li>
-                ))}
-              </ul>
-            </li>
+            {install.key && (
+              <li>
+                <h3>공공데이터포털 인증키 발급 (무료)</h3>
+                <p className="muted">{install.key.body}</p>
+                <ul className="chips">
+                  {install.key.links.map((l) => (
+                    <li key={l.url}>
+                      <a href={l.url}>{l.label} ↗</a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            )}
             <li>
               <h3>Claude Code에 플러그인 설치</h3>
               <p className="muted">{install.claudeCode.body}</p>

@@ -1,10 +1,15 @@
 {
-  "$comment": "포트폴리오에 소개할 MCP·Skill 프로젝트 목록. 각 저장소의 showcase/ 폴더(showcase.json, demos/*.json)를 빌드할 때 가져온다. --local 이면 local 경로를 쓴다.",
+  "$comment": "포트폴리오에 소개할 MCP·Skill 프로젝트 목록. 소개 자료는 이 저장소의 dir(showcase/<id>/)에 있고, 도구 목록은 빌드할 때 server를 실행해 받는다. --local 이면 server.local(옆 폴더의 로컬 빌드)을 실행한다.",
   "projects": [
     {
+      "dir": "showcase/korea-transit-mcp",
       "repo": "98Woonho/korea-transit-mcp",
-      "ref": "main",
-      "local": "../mcp"
+      "server": { "type": "npm", "package": "korea-transit-mcp", "local": "../mcp/dist/index.js" }
+    },
+    {
+      "dir": "showcase/db-scout-mcp",
+      "repo": "98Woonho/db-scout-mcp",
+      "server": { "type": "jar", "release": "98Woonho/db-scout-mcp", "asset": "db-scout-mcp.jar", "local": "../db-scout-mcp/build/libs/db-scout-mcp.jar" }
     }
   ]
 }

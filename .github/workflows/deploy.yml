@@ -1,6 +1,6 @@
 # 포트폴리오를 빌드해 GitHub Pages에 배포한다.
 # 처음 한 번: 저장소 Settings > Pages > Build and deployment > Source 를 "GitHub Actions" 로 바꾼다.
-# 각 프로젝트 저장소의 showcase/ 와 npm 패키지에서 자료를 가져오므로, 프로젝트를 고친 뒤에는
+# MCP 도구 목록은 배포된 서버(npm 패키지, GitHub Release jar)를 실행해 받으므로, 프로젝트를 새로 배포한 뒤에는
 # Actions 탭에서 수동 실행하거나 매주 월요일 자동 실행을 기다리면 된다.
 name: Deploy
 
@@ -29,6 +29,11 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      # db-scout-mcp 서버(jar)를 실행해 도구 목록을 받는 데 필요하다
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
       - run: npm ci
       - run: npm run showcase
       - run: npm run build
