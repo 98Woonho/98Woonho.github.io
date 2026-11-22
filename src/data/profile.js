@@ -37,12 +37,11 @@ export const experience = [
 
 export const skills = [
   { group: "AI · 에이전트 도구", items: ["TypeScript", "MCP SDK", "Claude Code · Skill", "Vitest"] },
-  { group: "Backend", items: ["Java", "Spring Boot", "MyBatis", "Oracle", "Node.js", "Express", "MySQL"] },
-  { group: "Frontend", items: ["JavaScript", "TypeScript", "React", "Tailwind CSS", "HTML / CSS"] },
+  { group: "Backend", items: ["Java", "Spring Boot", "Java Servlet", "MyBatis", "Oracle", "Node.js", "Express", "MySQL"] },
+  { group: "Frontend", items: ["JavaScript", "TypeScript", "React", "Tailwind CSS", "HTML / CSS", "MiPlatform"] },
   { group: "Mobile", items: ["Flutter", "Dart", "Riverpod", "FCM"] },
   { group: "인프라 · 운영", items: ["Linux (Rocky)", "Nginx", "IPsec VPN", "Shell · cron", "Python", "Oracle (PL/SQL · Scheduler)"] },
-  { group: "레거시", items: ["MiPlatform", "Java Servlet"] },
-  { group: "협업 · 배포", items: ["Git · GitHub", "GitHub Actions", "npm 배포"] },
+  { group: "협업 · 배포", items: ["Git · GitHub", "GitHub Actions", "Accordion", "npm 배포"] },
 ];
 
 /** 진행 중이거나 운영 중인 항목에 강조 배지를 단다 */
@@ -114,7 +113,7 @@ export const workProjects = [
     summary:
       "배차 확인, 전자결재, 급여명세, 사고 접수, 실시간 버스 위치를 한 앱에서 제공합니다. Flutter 앱과 Spring Boot 서버를 함께 개발했고, 제가 주 개발자로 전체 커밋의 약 84%를 맡았습니다.",
     role: "주 개발자 (앱 + 서버)",
-    tech: ["Flutter", "Dart", "Riverpod", "go_router", "Dio", "Spring Boot", "Java 21", "MyBatis", "Oracle", "FCM"],
+    tech: ["Flutter", "Dart", "Riverpod", "go_router", "Dio", "Spring Boot", "Java 21", "MyBatis", "Oracle", "FCM", "Accordion"],
     metrics: [
       { value: "42개", label: "화면" },
       { value: "약 105개", label: "API" },
@@ -142,6 +141,10 @@ export const workProjects = [
         title: "역할별 화면과 푸시 알림",
         body: "역할에 맞춰 메뉴를 구성하고, 승무사원은 로그인하면 배차 화면으로 바로 이동합니다. 푸시 알림을 누르면 로그인 상태를 확인한 뒤 해당 화면을 엽니다.",
       },
+      {
+        title: "Accordion을 활용한 배포",
+        body: "Accordion을 활용해 앱 서비스를 배포합니다.",
+      },
     ],
     images: [
       { caption: "로그인", device: "phone" },
@@ -161,7 +164,7 @@ export const workProjects = [
     summary:
       "MiPlatform과 Servlet으로 만든 사내 ERP에서 교통사고와 정비 기능을 개발하고, 시스템 전반의 개선과 유지보수를 맡았습니다. 이때 업무 흐름을 익힌 경험이 이후 웹 ERP 전환의 바탕이 되었습니다.",
     role: "교통사고·정비 기능 개발, 전반 개선·유지보수",
-    tech: ["MiPlatform", "Java Servlet", "Oracle"],
+    tech: ["MiPlatform", "Java Servlet", "Oracle", "Accordion"],
     // TODO: 사용자가 알려주면 구체적인 수치·사례로 교체 (화면 수, 개선 사례 등)
     metrics: [
       { value: "17개월", label: "개발·운영 기간" },
@@ -177,6 +180,10 @@ export const workProjects = [
       {
         title: "개선과 유지보수",
         body: "현업의 요청을 받아 화면과 기능을 고치고, 운영 중 발생한 문제를 해결했습니다.",
+      },
+      {
+        title: "Accordion을 활용한 배포",
+        body: "Accordion을 활용해 MiPlatform 기반 ERP 서비스를 배포합니다.",
       },
       {
         title: "웹 전환으로 이어진 경험",
