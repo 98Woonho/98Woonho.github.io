@@ -1,0 +1,25 @@
+{
+  "id": "top-renters",
+  "title": "개인정보는 가린 채로 순위 답하기",
+  "skill": "data-question",
+  "summary": "고객 이름은 서버가 가려서 돌려줍니다. 가린 값을 우회해 알아내지 않고, 고객 번호와 횟수로 순위를 답합니다.",
+  "window": "Claude Code · db-scout 플러그인",
+  "prompt": "가장 많이 빌린 고객 10명 알려 줘.",
+  "steps": [
+    {
+      "tool": "run_query",
+      "args": "SELECT customer_id, first_name, last_name, COUNT(rental_id) ... GROUP BY 1",
+      "result": [
+        "148 · E*** H*** · 46회   526 · K*** S*** · 45회   144 · C*** S*** · 42회 …",
+        "++first_name·last_name은 서버가 가려서 돌려줌(maskedColumns)++"
+      ]
+    }
+  ],
+  "answer": [
+    "대여 횟수 1위는 **고객 148번(46회)**, 2위는 고객 526번(45회)입니다.",
+    "이름은 개인정보라 E*** H*** 처럼 가려져 나와요. 순위는 고객 번호로 적었어요.",
+    "같은 횟수는 같은 순위로 적었고, 11위(38회)는 10위(39회)와 겹치지 않아요.",
+    "실제 이름이 필요하면 권한 있는 담당자가 DB에서 직접 확인해야 한다고 안내했어요."
+  ],
+  "caption": "실제 실행 기록(2026-11-22, Claude Opus 5.5 · db-scout v0.1.0 · 내장 Sakila)을 바탕으로 재구성 · 답변 일부"
+}

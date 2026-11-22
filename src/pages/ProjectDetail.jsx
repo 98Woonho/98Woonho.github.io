@@ -36,7 +36,7 @@ export default function ProjectDetail() {
         <p className="eyebrow">
           {p.kind} · v{p.version} · {p.period}
         </p>
-        <h1>{p.name}</h1>
+        <h1 style={{ viewTransitionName: `project-${p.id}` }}>{p.name}</h1>
         <p className="tagline">{p.tagline}</p>
         <p className="lead">{p.summary}</p>
         <div className="cta">
@@ -59,8 +59,8 @@ export default function ProjectDetail() {
       <section className="wrap section">
         <h2>설계 원칙</h2>
         <div className="grid-3">
-          {p.principles.map((x) => (
-            <article key={x.title} className="card">
+          {p.principles.map((x, i) => (
+            <article key={x.title} className="card" data-reveal style={{ "--d": `${i * 70}ms` }}>
               <h3>{x.title}</h3>
               <p className="muted">{x.body}</p>
             </article>
@@ -68,21 +68,23 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      <section className="wrap section">
-        <h2>데모</h2>
-        <p className="muted section-note">
-          실제 실행 기록을 재생하는 화면입니다. 이 사이트에서는 LLM을 실행하지 않습니다. 직접 질문해 보려면 <a href="#try">내 Claude에 설치</a>하세요.
-        </p>
-        {p.demos.map((d) => (
-          <Demo key={d.id} demo={d} />
-        ))}
-      </section>
+      {p.demos.length > 0 && (
+        <section className="wrap section">
+          <h2>데모</h2>
+          <p className="muted section-note">
+            실제 실행 기록을 재생하는 화면입니다. 이 사이트에서는 LLM을 실행하지 않습니다. 직접 질문해 보려면 <a href="#try">내 Claude에 설치</a>하세요.
+          </p>
+          {p.demos.map((d) => (
+            <Demo key={d.id} demo={d} />
+          ))}
+        </section>
+      )}
 
       <section className="wrap section">
         <h2>Skill</h2>
         <div className="grid-2">
           {p.skills.map((s) => (
-            <article key={s.name} className="card">
+            <article key={s.name} className="card" data-reveal>
               <h3>
                 <code>{s.name}</code>
               </h3>
@@ -127,7 +129,7 @@ export default function ProjectDetail() {
           <h2>품질 검증</h2>
           <div className="grid-3">
             {quality.metrics.map((m) => (
-              <article key={m.value} className="card metric">
+              <article key={m.value} className="card metric" data-reveal>
                 <b>{m.value}</b>
                 <p className="muted">{m.body}</p>
               </article>
@@ -144,17 +146,19 @@ export default function ProjectDetail() {
           <h2>직접 써보기</h2>
           <p className="muted section-note">{install.note}</p>
           <ol className="steps">
-            <li>
-              <h3>공공데이터포털 인증키 발급 (무료)</h3>
-              <p className="muted">{install.key.body}</p>
-              <ul className="chips">
-                {install.key.links.map((l) => (
-                  <li key={l.url}>
-                    <a href={l.url}>{l.label} ↗</a>
-                  </li>
-                ))}
-              </ul>
-            </li>
+            {install.key && (
+              <li>
+                <h3>공공데이터포털 인증키 발급 (무료)</h3>
+                <p className="muted">{install.key.body}</p>
+                <ul className="chips">
+                  {install.key.links.map((l) => (
+                    <li key={l.url}>
+                      <a href={l.url}>{l.label} ↗</a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            )}
             <li>
               <h3>Claude Code에 플러그인 설치</h3>
               <p className="muted">{install.claudeCode.body}</p>
