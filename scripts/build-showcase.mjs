@@ -1,20 +1,19 @@
 /**
  * 포트폴리오에 소개할 MCP·Skill 프로젝트 자료를 모은다 (dev·build 전에 자동 실행).
  *
- *   node scripts/build-showcase.mjs          배포된 서버(npm 패키지, GitHub Release jar)를 실행해 도구 목록을 받음 (배포용)
+ *   node scripts/build-showcase.mjs          npm에 배포된 서버를 실행해 도구 목록을 받음 (배포용)
  *   node scripts/build-showcase.mjs --local  옆 폴더의 로컬 서버 빌드를 실행함 (push 전 확인용)
  *
  * 프로젝트마다(showcase.config.json):
  *   - 이 저장소의 showcase/<id>/showcase.json, showcase/<id>/demos/*.json 을 읽고
  *   - 서버를 MCP 클라이언트로 실행해 실제 도구 목록과 버전을 받는다.
- *       npm: npx 로 최신 패키지를 실행 (로컬이면 dist/index.js)
- *       jar: GitHub Release 의 최신 jar 를 받아 SHA-256 을 확인한 뒤 java -jar 로 실행 (로컬이면 build/libs 의 jar)
+ *       npx 로 최신 패키지를 실행한다. 로컬이면 server.local 의 진입 파일을 node 로 실행한다.
+ *       (db-scout-mcp 는 npm 패키지가 Java 서버를 실행하는 실행기라 Java 21이 필요하다)
  *   - 데모 시나리오를 터미널 모양 애니메이션 SVG로 그린다.
  * 결과: src/generated/showcase.json, public/showcase/<id>/<데모>.svg  (둘 다 git에 넣지 않음)
  * 사이트는 녹화된 데모만 재생하고 LLM을 실행하지 않는다.
  */
-import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -29,51 +28,21 @@ const config = JSON.parse(readFileSync(join(root, "showcase.config.json"), "utf8
 const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
 
 /** 서버 실행 명령. 도구 목록만 받고 도구는 호출하지 않으므로 인증키·DB 설정 없이 실행한다. */
-async function serverCommand(server) {
-  if (server.type === "npm") {
-    if (local) {
-      const entry = resolve(root, server.local);
-      if (!existsSync(entry)) throw new Error(`로컬 서버가 빌드되지 않았습니다: ${entry} (npm run build)`);
-      return { command: process.execPath, args: [entry] };
-    }
-    const npx = ["npx", "-y", `${server.package}@latest`];
-    const [command, ...args] = process.platform === "win32" ? ["cmd", "/c", ...npx] : npx;
-    return { command, args };
+function serverCommand(server) {
+  if (server.type !== "npm") throw new Error(`알 수 없는 서버 종류: ${server.type}`);
+  if (local) {
+    const entry = resolve(root, server.local);
+    if (!existsSync(entry)) throw new Error(`로컬 서버가 없습니다: ${entry} (옆 폴더에서 먼저 빌드하세요)`);
+    return { command: process.execPath, args: [entry] };
   }
-  if (server.type === "jar") {
-    const jar = local ? resolve(root, server.local) : await downloadReleaseJar(server);
-    if (!existsSync(jar)) throw new Error(`로컬 서버가 빌드되지 않았습니다: ${jar} (.\\gradlew.bat bootJar)`);
-    return { command: "java", args: ["-jar", jar] };
-  }
-  throw new Error(`알 수 없는 서버 종류: ${server.type}`);
-}
-
-/** GitHub Release 의 최신 jar 를 받는다. 해시 파일로 확인하고, 같은 jar 는 다시 받지 않는다. */
-async function downloadReleaseJar({ release, asset }) {
-  const base = `https://github.com/${release}/releases/latest/download/`;
-  const shaRes = await fetch(base + asset + ".sha256");
-  if (!shaRes.ok) throw new Error(`${base}${asset}.sha256 → HTTP ${shaRes.status}`);
-  const expected = (await shaRes.text()).trim().split(/\s+/)[0].toLowerCase();
-  if (!/^[0-9a-f]{64}$/.test(expected)) throw new Error(`${asset}.sha256 형식이 올바르지 않습니다`);
-
-  const cacheDir = join(root, "node_modules", ".cache", "showcase-jars");
-  const jar = join(cacheDir, `${expected}.jar`);
-  if (existsSync(jar)) return jar;
-
-  const res = await fetch(base + asset);
-  if (!res.ok) throw new Error(`${base}${asset} → HTTP ${res.status}`);
-  const bytes = Buffer.from(await res.arrayBuffer());
-  const actual = createHash("sha256").update(bytes).digest("hex");
-  if (actual !== expected) throw new Error(`${asset} 해시가 다릅니다. 예상 ${expected}, 실제 ${actual}`);
-  mkdirSync(cacheDir, { recursive: true });
-  writeFileSync(jar + ".tmp", bytes);
-  renameSync(jar + ".tmp", jar);
-  return jar;
+  const npx = ["npx", "-y", `${server.package}@latest`];
+  const [command, ...args] = process.platform === "win32" ? ["cmd", "/c", ...npx] : npx;
+  return { command, args };
 }
 
 /** MCP 서버를 실행해 도구 목록과 버전을 받는다. */
 async function listTools(server) {
-  const { command, args } = await serverCommand(server);
+  const { command, args } = serverCommand(server);
   // 같은 이름의 패키지 폴더 안에서 npx 를 실행하면 실패하므로 임시 폴더에서 실행한다.
   // DB_SCOUT_URL 을 비워 두어, 이 PC의 환경변수와 상관없이 db-scout 가 내장 샘플 DB로 뜨게 한다.
   const transport = new StdioClientTransport({ command, args, cwd: tmpdir(), stderr: "ignore", env: { ...process.env, DB_SCOUT_URL: "" } });
@@ -88,10 +57,6 @@ async function listTools(server) {
   }
 }
 
-const TOOLS_NOTE = {
-  npm: "npm에 배포된 서버를 빌드할 때 실행해 받은 실제 목록입니다.",
-  jar: "GitHub Release에 배포된 서버(jar)를 빌드할 때 실행해 받은 실제 목록입니다.",
-};
 
 /** 도구 설명의 첫 문장만 (LLM용 사용 안내는 빼고). "FROM ... JOIN"의 말줄임표(...)는 문장 끝으로 보지 않는다. */
 const firstSentence = (d = "") => d.split(/(?<=[^.]\.|다)\s/)[0];
@@ -149,7 +114,6 @@ for (const project of config.projects) {
     ...rest,
     version,
     repo: project.repo,
-    toolsNote: TOOLS_NOTE[project.server.type],
     toolCount: tools.length,
     tools: groupTools(showcase.id, tools, toolGroups),
     demos,

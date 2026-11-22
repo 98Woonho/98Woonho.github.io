@@ -14,10 +14,10 @@ React 19 + Vite. GitHub Actions로 빌드해 GitHub Pages에 배포합니다.
 | 데모 (녹화된 대화) | `showcase/<id>/demos/*.json` → 터미널 모양 애니메이션 SVG로 변환 |
 | MCP 도구 목록과 버전 | 배포된 서버를 MCP 클라이언트로 실행해 받은 실제 목록 (`showcase.config.json`의 `server`) |
 
-| 서버 종류 | 배포용 빌드 | `--local` |
+| 프로젝트 | 배포용 빌드 | `--local` |
 |---|---|---|
-| `npm` (korea-transit-mcp) | `npx <패키지>@latest` | 옆 폴더의 `dist/index.js` |
-| `jar` (db-scout-mcp) | GitHub Release의 최신 jar를 받아 SHA-256 확인 후 `java -jar` (Java 21 필요) | 옆 폴더의 `build/libs/*.jar` |
+| korea-transit-mcp | `npx korea-transit-mcp@latest` | 옆 폴더의 `dist/index.js` |
+| db-scout-mcp | `npx db-scout-mcp@latest` (Java 서버를 실행하는 실행기라 Java 21 필요) | 옆 폴더의 `npm/launch.js`(로컬 빌드 jar 실행) |
 
 사이트는 녹화된 데모만 재생하고 **LLM을 실행하지 않습니다.** 방문자는 자기 Claude에 설치해서 직접 써 봅니다.
 
@@ -28,7 +28,7 @@ React 19 + Vite. GitHub Actions로 빌드해 GitHub Pages에 배포합니다.
 ```bash
 npm install
 npm run showcase:local   # 옆 폴더(../mcp, ../db-scout-mcp)의 로컬 서버 빌드로 도구 목록을 받음 (배포 전 확인)
-npm run showcase         # 배포된 서버(npm 패키지, GitHub Release jar)로 도구 목록을 받음 (배포와 같음)
+npm run showcase         # npm에 배포된 서버로 도구 목록을 받음 (배포와 같음)
 npm run dev              # http://localhost:5173
 npm run build            # dist/ 생성 (경로별 index.html, 404.html 포함)
 ```

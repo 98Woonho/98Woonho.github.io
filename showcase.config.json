@@ -9,7 +9,7 @@
     {
       "dir": "showcase/db-scout-mcp",
       "repo": "98Woonho/db-scout-mcp",
-      "server": { "type": "jar", "release": "98Woonho/db-scout-mcp", "asset": "db-scout-mcp.jar", "local": "../db-scout-mcp/build/libs/db-scout-mcp.jar" }
+      "server": { "type": "npm", "package": "db-scout-mcp", "local": "../db-scout-mcp/npm/launch.js" }
     }
   ]
 }

@@ -96,7 +96,7 @@ export default function ProjectDetail() {
 
       <section className="wrap section">
         <h2>MCP 도구 {p.toolCount}개</h2>
-        <p className="muted section-note">{p.toolsNote ?? "npm에 배포된 서버를 빌드할 때 실행해 받은 실제 목록입니다."}</p>
+        <p className="muted section-note">npm에 배포된 서버를 빌드할 때 실행해 받은 실제 목록입니다.</p>
         <div className="table-wrap">
           <table className="tools">
             <thead>
