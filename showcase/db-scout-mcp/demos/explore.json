@@ -1,0 +1,41 @@
+{
+  "id": "explore",
+  "title": "처음 보는 DB를 업무 흐름으로 설명",
+  "skill": "db-explore",
+  "summary": "테이블 21개를 다 나열하지 않고, 행 수로 성격을 가른 뒤 핵심 테이블 7개만 자세히 봐서 업무 흐름과 관계도로 정리합니다.",
+  "window": "Claude Code · db-scout 플러그인",
+  "prompt": "이 DB에 뭐가 들어 있는지 설명해 줘.",
+  "steps": [
+    {
+      "tool": "list_connections",
+      "args": {},
+      "result": [
+        "sakila · SQLite · 설정된 DB가 없어 ++내장 샘플 DB++로 실행 중"
+      ]
+    },
+    {
+      "tool": "list_tables",
+      "args": {},
+      "result": [
+        "테이블 16개 + 뷰 5개 (행 수는 정확한 값)",
+        "payment 16,049 · rental 16,044 · inventory 4,581 · film 1,000 · store 2 …"
+      ]
+    },
+    {
+      "tool": "describe_table",
+      "args": "핵심 7개: payment, rental, inventory, film, customer, store, staff",
+      "result": [
+        "외래키: film → inventory → rental → payment",
+        "customer·staff의 이름·이메일, staff.password에 ++가림 표시(masked)++"
+      ]
+    }
+  ],
+  "answer": [
+    "**DVD 대여점 데이터**입니다. 매장 2곳이 영화 재고를 빌려주고 결제를 받는 기록이에요.",
+    "대여 흐름 · 영화 정보 · 사람과 매장 · 주소 · 뷰로 나눠 표로 정리하고 관계도를 그렸어요.",
+    "데이터는 **영화 → 재고 → 대여 → 결제** 순서로 이어져요.",
+    "고객·직원의 이름과 이메일, 직원 비밀번호는 조회 결과에서 가려져요.",
+    "외래키를 확인하지 않은 연결(address → city → country)은 **추정**이라고 표시했어요."
+  ],
+  "caption": "실제 실행 기록(2026-11-22, Claude Opus 5.5 · db-scout v0.1.0 · 내장 Sakila)을 바탕으로 재구성 · 답변 일부"
+}

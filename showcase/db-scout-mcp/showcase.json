@@ -68,7 +68,13 @@
       "summary": "질문을 읽기 전용 SQL로 바꿔 답합니다. 조인은 도구로 확인하고, 어떤 기준으로 셌는지와 실행한 SQL을 함께 보여 줍니다. 쓰기·개인정보 요청은 실행하지 않고 다른 방법을 안내합니다."
     }
   ],
-  "demos": [],
+  "demos": [
+    "demos/category-revenue.json",
+    "demos/explore.json",
+    "demos/store-revenue.json",
+    "demos/top-renters.json",
+    "demos/email-request.json"
+  ],
   "toolGroups": [
     {
       "group": "연결",

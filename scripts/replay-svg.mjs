@@ -5,6 +5,8 @@
  * 시나리오 형식 (각 프로젝트 저장소의 showcase/demos/*.json):
  *   { id, title, prompt, steps: [{ tool, args, result: [줄...] }], answer: [줄...], caption }
  *   - 결과·답변 줄에서 **굵게** 는 강조색, ++초록++ 은 확인 표시색으로 그린다.
+ *   - 별표가 3개 이상 이어진 것(E*** 처럼 개인정보를 가린 값)은 표시가 아니라 글자 그대로 그린다.
+ *   - window: 창 제목 (기본 "Claude Code · korea-transit 플러그인")
  */
 
 const W = 860;
@@ -20,11 +22,14 @@ const T = {
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-/** "**강조**", "++확인++" 표시를 tspan 으로 */
+/** "**강조**", "++확인++" 표시를 tspan 으로. 가린 값의 별표(***)는 먼저 따로 빼 두었다가 그대로 돌려놓는다. */
 function rich(line) {
-  return esc(line)
+  const stars = [];
+  const kept = String(line).replace(/\*{3,}/g, (m) => `\u0000${stars.push(m) - 1}\u0000`);
+  return esc(kept)
     .replace(/\*\*(.+?)\*\*/g, '<tspan class="hl">$1</tspan>')
-    .replace(/\+\+(.+?)\+\+/g, '<tspan class="ok">$1</tspan>');
+    .replace(/\+\+(.+?)\+\+/g, '<tspan class="ok">$1</tspan>')
+    .replace(/\u0000(\d+)\u0000/g, (_, i) => stars[Number(i)]);
 }
 
 /** 도구 인자를 한 줄로: (cityCode: 25, name: "시청역") */
