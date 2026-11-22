@@ -12,6 +12,17 @@
     <meta name="theme-color" content="#111214" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script>
+      // 첫 페인트 전에: 저장된 테마 적용(깜빡임 방지), JS가 동작할 때만 등장 애니메이션용으로 요소를 숨기는 .js 표시
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") root.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

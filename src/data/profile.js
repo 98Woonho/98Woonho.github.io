@@ -5,20 +5,73 @@ export const profile = {
   name: "이운호",
   nameEn: "Woonho Lee",
   role: "Software Developer",
-  headline: ["여러 현장을 거쳐,", "지금은 코드로 문제를 풉니다."],
+  // 첫 화면 6초 안에 읽히도록: 무엇을 하는 사람인지 → 증거 수치(heroStats) 순서
+  headline: ["웹과 모바일 서비스를 만들고,", "서버와 데이터 흐름까지 운영합니다."],
+  current: { org: "태영운송그룹 전산실", since: "2025.03" },
+  focus: ["웹 · 모바일 풀스택", "운영 · 인프라", "AI 에이전트 도구"],
   intro: [
-    "개발 외에도 여러 일을 경험하며, 기술보다 먼저 그것을 쓰는 사람이 무엇을 불편해하는지 보는 법을 배웠습니다.",
-    "지금은 실무 개발자로 일하며, 새로운 기술은 직접 만들어 보면서 익히고 있습니다.",
+    "개발 외에도 여러 일을 경험하며, 기술보다 먼저 그것을 쓰는 사람이 무엇을 불편해하는지 보는 법을 배웠습니다. 지금은 실무 개발자로 일하며, 새로운 기술은 직접 만들어 보면서 익히고 있습니다.",
   ],
   email: "9woonho8@gmail.com",
   github: "https://github.com/98Woonho",
+  // 이력서 PDF. public/ 에 파일을 넣고 경로를 적으면 첫 화면과 메뉴에 '이력서' 버튼이 생긴다 (예: "/resume.pdf")
+  resume: "",
 };
+
+// 첫 화면 증거 수치. 아래 프로젝트 데이터에 이미 있는 값만 쓴다.
+export const heroStats = [
+  { value: "약 590", label: "실무 프로젝트 커밋", note: "웹 ERP 약 280 + 모바일 앱 약 310", to: "/#work-app" },
+  { value: "−78%", label: "ERP 통신 데이터량", note: "36.3MB → 7.9MB", to: "/work/erp-security#case-2" },
+  { value: "3건", label: "데이터 수집 장애 해결", note: "원인 분석 후 1~3영업일", to: "/work/dtg-pipeline#cases" },
+  { value: "70 → 100%", label: "직접 만든 Skill 평가 통과율", note: "npm 배포 MCP 서버", to: "/projects/korea-transit-mcp" },
+];
+
+// 대표 성과 (벤토). to 의 #case-n 은 상세 페이지 사례 번호(1부터)다.
+export const featured = [
+  {
+    size: "lg",
+    to: "/work/erp-security#case-1",
+    tag: "보안",
+    title: "평문 비밀번호를 BCrypt로, 두 시스템을 한 번에",
+    problem: "레거시 ERP와 웹 ERP가 같은 사용자 테이블을 써서, 한쪽만 바꾸면 다른 쪽 로그인이 깨지는 구조였습니다.",
+    result: "두 시스템이 서로의 해시를 검증하도록 형식과 비용을 맞춰 한 번에 전환했습니다.",
+  },
+  {
+    to: "/work/erp-security#case-2",
+    tag: "성능",
+    value: "−78%",
+    title: "소스 없는 라이브러리의 통신 포맷 변경",
+    result: "36.3MB → 7.9MB, 평문 노출도 막았습니다.",
+  },
+  {
+    to: "/work/dtg-pipeline#case-3",
+    tag: "장애",
+    title: "신규 영업소만 전송 기록이 빠지는 문제",
+    problem: "설치 업체가 순정 버전을 깔아 전용 라이브러리가 없었습니다.",
+    result: "5단계 이식 절차를 설계해 1영업일에 복구했습니다.",
+  },
+  {
+    to: "/work/mobile-app",
+    tag: "모바일",
+    value: "약 84%",
+    title: "승무사원·관리직 앱의 주 개발자",
+    result: "전체 커밋의 약 84%. Flutter 앱과 Spring Boot 서버, 42개 화면 · 약 105개 API",
+  },
+  {
+    to: "/work/dtg-pipeline#case-1",
+    tag: "개선",
+    value: "3분 → 1분",
+    title: "GPS 수집 주기 단축",
+    result: "3배로 늘어난 데이터는 매일 자정 자동 정리합니다.",
+  },
+];
 
 export const experience = [
   {
     period: "2025.03 ~ 현재",
     title: "소프트웨어 개발자",
-    org: "버스 운수회사 사내 IT",
+    org: "태영운송그룹 전산실",
+    rank: "계장", // 직급. 경력증명서 표기와 맞춘다
     body: "사내 ERP의 교통사고·정비 기능을 개발하고 유지보수했습니다. 지금은 이 ERP를 웹으로 옮기는 일과, 승무사원·관리직이 쓰는 모바일 앱 개발을 맡고 있습니다. 운행기록계 데이터 수집 운영과 서버·보안 구축도 함께 담당합니다.",
   },
   {
@@ -48,7 +101,7 @@ export const skills = [
 /** 진행 중이거나 운영 중인 항목에 강조 배지를 단다 */
 export const isLive = (status) => status === "진행 중" || status === "운영 중";
 
-// 실무 프로젝트 (사내 개발, 소스 비공개). 회사명·서비스명은 일반화해서 적는다.
+// 실무 프로젝트 (사내 개발, 소스 비공개). 회사명은 경력에 적고, 내부 시스템·서비스명은 일반화해서 적는다.
 // 사내 시스템 보안을 위해 화면 스크린샷은 비공개하며, 시스템 아키텍처(flows)와 역할 위주로 정리한다.
 export const workProjects = [
   {
@@ -249,6 +302,8 @@ export const workProjects = [
       {
         tag: "개선",
         title: "GPS 수집 주기를 1분으로 줄이고, 쌓이는 데이터는 자동으로 정리",
+        summary: "경로 기록이 3배 촘촘해졌고, 늘어난 데이터는 3개월 보존 정책으로 자동 관리합니다.",
+        compare: { kind: "interval", label: "1시간 동안 기록되는 GPS 위치", before: { value: 3, text: "3분 간격 · 20개" }, after: { value: 1, text: "1분 간격 · 60개" } },
         at: { flow: 0, step: 4 },
         rows: [
           { label: "배경", text: "운행기록계의 GPS 데이터가 3분 간격으로 수집되고 있었습니다." },
@@ -259,6 +314,7 @@ export const workProjects = [
       {
         tag: "장애",
         title: "일부 영업소 차량의 운행기록이 DB에 들어오지 않음",
+        summary: "전송 프로그램에서 빠진 영업소 코드를 찾아 추가하고, 3영업일에 복구했습니다.",
         at: { flow: 0, step: 3 },
         rows: [
           { label: "증상", text: "한 영업소 차량의 운행기록계 데이터가 누락됐습니다. 자체 점검 중 발견했습니다." },
@@ -270,6 +326,7 @@ export const workProjects = [
       {
         tag: "장애",
         title: "신규 영업소에서만 파일 전송 시간이 DB에 기록되지 않음",
+        summary: "설치 버전 차이로 빠진 라이브러리를 찾아내고, 5단계 이식 절차로 1영업일에 복구했습니다.",
         at: { flow: 0, step: 2 },
         rows: [
           { label: "증상", text: "신규 영업소에 운행기록계 시스템을 설치한 뒤, 이 영업소에서만 파일 전송 이력이 DB로 올라오지 않았습니다. 기존 영업소는 모두 정상이었습니다." },
@@ -281,6 +338,7 @@ export const workProjects = [
       {
         tag: "장애",
         title: "처리가 끝난 파일이 삭제되지 않고 쌓여 전송이 지연됨",
+        summary: "병합 단계에서 멈춘 원인을 찾아 복구 절차를 정리하고, 2영업일에 정상화했습니다.",
         at: { flow: 0, step: 2 },
         rows: [
           { label: "증상", text: "무결성 검사와 FTP 전송을 맡는 처리 프로그램에서 처리 완료 파일이 계속 쌓이면서 전송이 늦어졌습니다. 현업 담당자의 요청으로 시작했습니다." },
@@ -326,6 +384,7 @@ export const workProjects = [
       {
         tag: "구축",
         title: "방향별 방화벽 정책과 한 번에 끝나는 배포",
+        summary: "서버를 2영업일에 구축했고, 이후 배포는 명령 한 번으로 끝납니다.",
         at: { flow: 0, step: 2 },
         rows: [
           { label: "배경", text: "외부에서 앱을 테스트하고 배포할 서버가 필요했습니다. 정식 배포 전이라 DMZ에 두고, 배포 때 보안 정책을 다시 검토하기로 했습니다." },
@@ -370,6 +429,7 @@ export const workProjects = [
       {
         tag: "구축",
         title: "외부 사업자와 VPN으로 연결하는 데이터 수집 환경",
+        summary: "매일 자동으로 수신·적재되고, VPN 장비를 운영·예비 2대로 두어 장애에 대비했습니다.",
         at: { flow: 0, step: 1 },
         rows: [
           { label: "배경", text: "교통카드 사업자가 매일 보내는 데이터를 안전하게 받아 DB에 쌓아야 했습니다." },
@@ -416,6 +476,8 @@ export const workProjects = [
       {
         tag: "보안",
         title: "평문 비밀번호를 BCrypt로 — 두 시스템을 한꺼번에 바꿔야 했던 이유",
+        summary: "두 시스템이 서로의 해시를 검증하도록 맞춰, 평문 비밀번호를 한 번에 없앴습니다.",
+        compare: { kind: "text", label: "DB에 저장되는 비밀번호", before: { text: "myPass123", note: "평문 그대로" }, after: { text: "$2a$10$ + 솔트 22자 + 해시 31자", note: "60자 BCrypt 해시 (형식 예시)" } },
         at: { flow: 0, step: 3 },
         rows: [
           { label: "문제", text: "비밀번호가 DB에 평문으로 저장돼 있어, 조회 권한만 있으면 전 직원의 비밀번호를 볼 수 있었습니다. 게다가 두 시스템(레거시 ERP, 웹 ERP)이 같은 사용자 테이블을 쓰고 있어서 한쪽만 바꾸면 다른 쪽 로그인이 깨지는 구조였습니다." },
@@ -428,6 +490,8 @@ export const workProjects = [
       {
         tag: "보안 · 성능",
         title: "소스 없는 라이브러리를 건드리지 않고 통신 포맷을 바이너리로",
+        summary: "라이브러리를 고치지 않고 통신을 바이너리로 바꿔, 평문 노출을 막고 데이터량을 78% 줄였습니다.",
+        compare: { kind: "bar", unit: "MB", label: "같은 조회의 통신 데이터량", before: { value: 36.3, text: "평문 XML" }, after: { value: 7.9, text: "바이너리" } },
         at: { flow: 0, step: 1 },
         rows: [
           { label: "발견", text: "플랫폼 벤더의 방문 교육 중, 송수신 데이터가 평문 XML이고 불필요한 메타데이터까지 실려 용량이 큰 것을 발견했습니다. 대량 조회 때 응답이 눈에 띄게 느렸습니다." },

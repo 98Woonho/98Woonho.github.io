@@ -36,7 +36,7 @@ export default function ProjectDetail() {
         <p className="eyebrow">
           {p.kind} · v{p.version} · {p.period}
         </p>
-        <h1>{p.name}</h1>
+        <h1 style={{ viewTransitionName: `project-${p.id}` }}>{p.name}</h1>
         <p className="tagline">{p.tagline}</p>
         <p className="lead">{p.summary}</p>
         <div className="cta">
@@ -59,8 +59,8 @@ export default function ProjectDetail() {
       <section className="wrap section">
         <h2>설계 원칙</h2>
         <div className="grid-3">
-          {p.principles.map((x) => (
-            <article key={x.title} className="card">
+          {p.principles.map((x, i) => (
+            <article key={x.title} className="card" data-reveal style={{ "--d": `${i * 70}ms` }}>
               <h3>{x.title}</h3>
               <p className="muted">{x.body}</p>
             </article>
@@ -82,7 +82,7 @@ export default function ProjectDetail() {
         <h2>Skill</h2>
         <div className="grid-2">
           {p.skills.map((s) => (
-            <article key={s.name} className="card">
+            <article key={s.name} className="card" data-reveal>
               <h3>
                 <code>{s.name}</code>
               </h3>
@@ -127,7 +127,7 @@ export default function ProjectDetail() {
           <h2>품질 검증</h2>
           <div className="grid-3">
             {quality.metrics.map((m) => (
-              <article key={m.value} className="card metric">
+              <article key={m.value} className="card metric" data-reveal>
                 <b>{m.value}</b>
                 <p className="muted">{m.body}</p>
               </article>
