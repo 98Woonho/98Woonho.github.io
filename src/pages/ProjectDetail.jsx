@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import CopyButton from "../components/CopyButton.jsx";
+import CaseCard from "../components/CaseCard.jsx";
 import Demo from "../components/Demo.jsx";
 import showcase from "../generated/showcase.json";
 
@@ -127,6 +128,7 @@ export default function ProjectDetail() {
       {quality && (
         <section className="wrap section">
           <h2>품질 검증</h2>
+          {quality.conditions && <p className="muted section-note">{quality.conditions}</p>}
           <div className="grid-3">
             {quality.metrics.map((m) => (
               <article key={m.value} className="card metric" data-reveal>
@@ -135,8 +137,13 @@ export default function ProjectDetail() {
               </article>
             ))}
           </div>
+          {quality.caseStudy && (
+            <div className="cases" style={{ marginTop: 24 }}>
+              <CaseCard c={quality.caseStudy} n={1} showNo={false} />
+            </div>
+          )}
           <p className="muted section-note">
-            {quality.note} <a href={quality.link}>README에서 보기 ↗</a>
+            {quality.note} <a href={quality.link}>{quality.linkLabel || "README에서 보기"}</a>
           </p>
         </section>
       )}
