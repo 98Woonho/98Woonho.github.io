@@ -119,7 +119,7 @@ p { margin: 0 0 12px; }
 .focus li { padding: 5px 14px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line)); background: color-mix(in srgb, var(--accent) 8%, transparent); color: var(--text); font-size: 0.9rem; font-weight: 600; }
 .lead { font-size: 1.12rem; color: var(--muted); max-width: 720px; }
 /* 증거 수치 */
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 48px 0 0; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 48px 0 0; }
 .stats a { display: flex; flex-direction: column; height: 100%; padding: 18px 18px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--text); text-decoration: none; transition: border-color 0.2s, transform 0.15s; }
 .stats a:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); transform: translateY(-2px); }
 .stats b { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--accent-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -198,6 +198,7 @@ p { margin: 0 0 12px; }
 
 /* 대표 프로젝트 (벤토) */
 .featured { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-areas: "head metrics" "demo demo"; gap: 16px; background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface) 55%); border: 1px solid var(--line); border-radius: 26px; padding: 32px; margin-bottom: 16px; }
+.featured.no-metrics { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "demo"; }
 .featured-head { grid-area: head; }
 .featured h3 { font-size: clamp(1.6rem, 3vw, 2rem); margin-bottom: 4px; }
 .tagline { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
@@ -237,7 +238,7 @@ p { margin: 0 0 12px; }
 /* 프로젝트 상세 */
 .detail-hero { padding-top: 56px; }
 .detail-hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 0 0 8px; }
-.detail-hero .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 36px; }
+.detail-hero .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 36px; }
 .back { display: inline-block; margin-bottom: 28px; color: var(--muted); text-decoration: none; font-size: 0.92rem; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
 .tools { width: 100%; border-collapse: collapse; background: var(--surface); }

@@ -1,6 +1,6 @@
 {
   "id": "explore",
-  "title": "처음 보는 DB를 업무 흐름으로 설명",
+  "title": "DB 구조를 업무 흐름으로 설명",
   "skill": "db-explore",
   "summary": "테이블 21개를 다 나열하지 않고, 행 수로 성격을 가른 뒤 핵심 테이블 7개만 자세히 봐서 업무 흐름과 관계도로 정리합니다.",
   "window": "Claude Code · db-scout 플러그인",

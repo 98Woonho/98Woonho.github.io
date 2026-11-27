@@ -4,7 +4,7 @@ import CaseCard from "../components/CaseCard.jsx";
 import DetailToc from "../components/DetailToc.jsx";
 import Flow from "../components/Flow.jsx";
 import Screenshot from "../components/Screenshot.jsx";
-import { isLive, workProjects } from "../data/profile.js";
+import { isLive, workProjectRedirects, workProjects } from "../data/profile.js";
 import { marksByFlow } from "../lib/flow.js";
 
 export default function WorkDetail() {
@@ -21,13 +21,17 @@ export default function WorkDetail() {
     };
   }, [p]);
 
-  if (!p) return <Navigate to="/#projects" replace />;
+  if (!p) {
+    const redirect = workProjectRedirects[id];
+    if (redirect) return <Navigate to={{ pathname: `/work/${redirect.id}`, hash: redirect.hashes?.[hash] || hash || redirect.hash || "" }} replace />;
+    return <Navigate to="/#projects" replace />;
+  }
   // 사례가 1건이면 번호(①)와 흐름도 배지는 의미가 없어 생략한다
   const single = p.cases?.length === 1;
   const marks = single ? [] : marksByFlow(p);
   const hovered = hoverCase != null ? p.cases[hoverCase - 1]?.at : null;
   // 대표 성과·흐름도 배지에서 #case-n 으로 들어오면 그 사례를 잠깐 강조한다
-  const targetCase = Number(/^#case-(\d+)$/.exec(hash)?.[1]) || null;
+  const targetCase = (p.cases?.findIndex((c, i) => `#${c.anchor || `case-${i + 1}`}` === hash) ?? -1) + 1 || null;
   const images = (p.images || []).filter((img) => img.src);
 
   const toc = [
@@ -56,6 +60,7 @@ export default function WorkDetail() {
         <p className="muted role">
           <b>역할</b> · {p.role}
         </p>
+        {p.validation && <p className="muted section-note">{p.validation}</p>}
         <ul className="metrics">
           {p.metrics.map((m, i) => (
             <li key={m.label} data-reveal style={{ "--d": `${i * 60}ms` }}>
@@ -91,7 +96,7 @@ export default function WorkDetail() {
           <h2>주요 작업</h2>
           <div className="grid-2">
             {p.highlights.map((h, i) => (
-              <article key={h.title} className="card" data-reveal style={{ "--d": `${(i % 2) * 70}ms` }}>
+              <article key={h.title} id={h.anchor} className="card" data-reveal style={{ "--d": `${(i % 2) * 70}ms` }}>
                 <h3>{h.title}</h3>
                 <p className="muted">{h.body}</p>
               </article>
@@ -119,7 +124,6 @@ export default function WorkDetail() {
             <li key={t}>{t}</li>
           ))}
         </ul>
-        {p.process && <p className="muted section-note note-private">{p.process}</p>}
       </section>
     </main>
   );

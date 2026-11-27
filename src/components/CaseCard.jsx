@@ -8,7 +8,7 @@ import BeforeAfter from "./BeforeAfter.jsx";
 export default function CaseCard({ c, n, showNo = true, active = false, onHover }) {
   return (
     <article
-      id={`case-${n}`}
+      id={c.anchor || `case-${n}`}
       className={`card case ${active ? "is-active" : ""}`}
       data-reveal
       onMouseEnter={onHover && (() => onHover(n))}

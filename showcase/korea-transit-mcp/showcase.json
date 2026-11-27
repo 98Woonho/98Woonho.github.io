@@ -29,24 +29,7 @@
       "url": "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.98Woonho/korea-transit-mcp"
     }
   ],
-  "highlights": [
-    {
-      "value": "70% → 100%",
-      "label": "Skill을 넣었을 때 평가 통과율"
-    },
-    {
-      "value": "12",
-      "label": "MCP 도구"
-    },
-    {
-      "value": "138",
-      "label": "지원 도시"
-    },
-    {
-      "value": "0원",
-      "label": "서버의 LLM 비용"
-    }
-  ],
+  "highlights": [],
   "principles": [
     {
       "title": "계산은 도구에",
@@ -55,10 +38,6 @@
     {
       "title": "판단은 Skill에",
       "body": "\"몇 배부터 공백인가\", \"어느 정류장을 먼저 안내하나\" 같은 기준과 순서는 Skill 문서로 둡니다. 코드를 고치지 않고 기준을 바꿀 수 있습니다."
-    },
-    {
-      "title": "서버는 LLM을 부르지 않음",
-      "body": "서버는 공공 API만 호출합니다. LLM은 사용자의 Claude가 실행하므로, 사용자가 늘어도 운영 비용이 들지 않습니다."
     }
   ],
   "skills": [
@@ -131,7 +110,8 @@
       }
     ],
     "note": "AI 채점 결과를 실행 기록과 직접 대조해 채점 기준의 오류를 찾아 고친 과정까지 README에 정리했습니다.",
-    "link": "https://github.com/98Woonho/korea-transit-mcp#품질-검증"
+    "link": "https://github.com/98Woonho/korea-transit-mcp#품질-검증",
+    "conditions": "당시 고정한 평가 세트에서 같은 MCP 도구에 Skill만 넣고 뺀 비교입니다. 아래 비율은 해당 채점 기준의 결과이며, 모든 도시·질문의 정확도를 뜻하지 않습니다."
   },
   "install": {
     "note": "내 Claude에서 실행되므로 사용량은 내 Claude 요금제 안에서 처리됩니다. 공공 API 인증키는 무료입니다.",
@@ -164,7 +144,7 @@
       "body": "Claude Desktop, Cursor 등은 설정 파일의 mcpServers에 추가합니다(Node.js 20.12 이상). Skill은 Claude Code 플러그인에만 들어 있습니다.",
       "code": "{\n  \"mcpServers\": {\n    \"korea-transit\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"korea-transit-mcp\"],\n      \"env\": { \"DATA_GO_KR_SERVICE_KEY\": \"발급받은_Decoding_키\" }\n    }\n  }\n}"
     },
-    "promptsNote": "도시 이름을 함께 말해 주세요. 서울은 TAGO에 없어서 지원하지 않습니다.",
+    "promptsNote": "도시 이름을 함께 말해 주세요. 지역별 TAGO 제공 범위에 따라 조회되며, 서울은 지원하지 않습니다.",
     "prompts": [
       "대전 시청역에서 목련아파트까지 버스 뭐 타야 돼?",
       "대전 목원대학교에서 신탄진역까지 버스로 어떻게 가?",

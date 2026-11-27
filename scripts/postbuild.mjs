@@ -10,9 +10,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const index = join(dist, "index.html");
 const { projects } = JSON.parse(readFileSync(join(root, "src", "generated", "showcase.json"), "utf8"));
-const { workProjects } = await import(pathToFileURL(join(root, "src", "data", "profile.js")).href);
+const { workProjects, workProjectRedirects } = await import(pathToFileURL(join(root, "src", "data", "profile.js")).href);
 
-const routes = [...projects.map((p) => `projects/${p.id}`), ...workProjects.map((p) => `work/${p.id}`)];
+const routes = [...projects.map((p) => `projects/${p.id}`), ...workProjects.map((p) => `work/${p.id}`), ...Object.keys(workProjectRedirects).map((id) => `work/${id}`)];
 for (const route of routes) {
   mkdirSync(join(dist, route), { recursive: true });
   copyFileSync(index, join(dist, route, "index.html"));

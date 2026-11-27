@@ -47,19 +47,19 @@ export default function ProjectDetail() {
             </a>
           ))}
         </div>
-        <ul className="metrics">
+        {p.highlights.length > 0 && <ul className="metrics">
           {p.highlights.map((h) => (
             <li key={h.label}>
               <b>{h.value}</b>
               <span>{h.label}</span>
             </li>
           ))}
-        </ul>
+        </ul>}
       </section>
 
       <section className="wrap section">
         <h2>설계 원칙</h2>
-        <div className="grid-3">
+        <div className={p.principles.length === 2 ? "grid-2" : "grid-3"}>
           {p.principles.map((x, i) => (
             <article key={x.title} className="card" data-reveal style={{ "--d": `${i * 70}ms` }}>
               <h3>{x.title}</h3>
@@ -129,14 +129,14 @@ export default function ProjectDetail() {
         <section className="wrap section">
           <h2>품질 검증</h2>
           {quality.conditions && <p className="muted section-note">{quality.conditions}</p>}
-          <div className="grid-3">
+          {quality.metrics.length > 0 && <div className="grid-3">
             {quality.metrics.map((m) => (
               <article key={m.value} className="card metric" data-reveal>
                 <b>{m.value}</b>
                 <p className="muted">{m.body}</p>
               </article>
             ))}
-          </div>
+          </div>}
           {quality.comparison && (
             <div style={{ marginTop: 24 }}>
               <div className="table-wrap">

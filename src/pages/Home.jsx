@@ -86,7 +86,7 @@ function GroupTitle({ id, children, note }) {
 function FeaturedProject({ p }) {
   const demo = p.demos[0];
   return (
-    <article className="featured" data-reveal>
+    <article className={`featured ${p.highlights.length ? "" : "no-metrics"}`} data-reveal>
       <div className="featured-head">
         <p className="kind">
           {p.kind} · {p.period}
@@ -110,14 +110,14 @@ function FeaturedProject({ p }) {
           ))}
         </div>
       </div>
-      <ul className="metrics">
+      {p.highlights.length > 0 && <ul className="metrics">
         {p.highlights.map((h) => (
           <li key={h.label}>
             <b>{h.value}</b>
             <span>{h.label}</span>
           </li>
         ))}
-      </ul>
+      </ul>}
       {demo && (
         <div className="featured-demo window">
           <div className="window-bar" aria-hidden="true">
@@ -252,7 +252,7 @@ export default function Home() {
           <div className="wrap">
             <GroupTitle
               id="work-ops"
-              note="현장 장비에서 올라오는 데이터와 사내 서버를 운영하며 겪은 장애와 구축 작업입니다. 원인을 분석해 해결한 과정을 일지로 남겼고, 그중 대표 사례를 정리했습니다."
+              note="운행기록과 교통카드 데이터가 사내 DB에 들어오는 수집 환경을 운영하고 개선했습니다."
             >
               운영 · 인프라
             </GroupTitle>
@@ -267,7 +267,7 @@ export default function Home() {
         <div className="wrap">
           <GroupTitle
             id="ai-tools"
-            note="AI 에이전트(Claude 등)가 실제 데이터를 조회하고 판단할 수 있게 만드는 MCP 서버와 Skill입니다. 서버는 LLM을 호출하지 않아 운영 비용이 들지 않습니다."
+            note="버스 공공데이터 조회와 읽기 전용 DB 탐색을 위한 MCP 서버와 Skill입니다."
           >
             AI 에이전트 도구
           </GroupTitle>
