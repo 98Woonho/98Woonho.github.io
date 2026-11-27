@@ -120,7 +120,6 @@ export default function WorkDetail() {
           ))}
         </ul>
         {p.process && <p className="muted section-note note-private">{p.process}</p>}
-        <p className="muted section-note note-private">사내에서 운영하는 시스템이라 소스코드와 서비스 주소, 세부 설정값은 공개하지 않습니다.</p>
       </section>
     </main>
   );

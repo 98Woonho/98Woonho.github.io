@@ -238,7 +238,7 @@ export default function Home() {
       <section id="projects" className="section projects">
         <div className="wrap">
           <SectionTitle no="02">프로젝트</SectionTitle>
-          <GroupTitle id="work-app" note="현재 회사에서 맡은 사내 시스템입니다. 소스코드는 공개하지 않고, 역할과 만든 기능 위주로 정리했습니다.">
+          <GroupTitle id="work-app" note="현재 회사에서 맡은 사내 시스템입니다.">
             실무 프로젝트
           </GroupTitle>
           <div className="grid-3 work-grid dim-group">
