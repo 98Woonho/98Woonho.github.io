@@ -247,6 +247,11 @@ p { margin: 0 0 12px; }
 .tools td.group { color: var(--muted); white-space: nowrap; }
 .tools code { color: var(--accent-text); white-space: nowrap; }
 .tools .title { display: block; font-size: 0.84rem; color: var(--muted); }
+.evaluation-table { width: 100%; min-width: 340px; border-collapse: collapse; background: var(--surface); }
+.evaluation-table caption { padding: 16px; color: var(--text); font-weight: 600; text-align: left; }
+.evaluation-table th, .evaluation-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.evaluation-table th { font-size: 0.9rem; color: var(--muted); font-weight: 600; }
+.evaluation-table tr:last-child th, .evaluation-table tr:last-child td { border-bottom: 0; }
 .steps { padding-left: 1.3em; margin: 0; }
 .steps > li { padding-left: 6px; margin-bottom: 36px; }
 .steps > li::marker { color: var(--accent-text); font-weight: 800; }

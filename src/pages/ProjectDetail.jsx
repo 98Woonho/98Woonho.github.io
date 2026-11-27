@@ -137,6 +137,32 @@ export default function ProjectDetail() {
               </article>
             ))}
           </div>
+          {quality.comparison && (
+            <div style={{ marginTop: 24 }}>
+              <div className="table-wrap">
+                <table className="evaluation-table" aria-describedby="evaluation-note">
+                  <caption>{quality.comparison.title}</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">지표</th>
+                      <th scope="col">Skill 있음</th>
+                      <th scope="col">Skill 없음</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {quality.comparison.rows.map((row) => (
+                      <tr key={row.label}>
+                        <th scope="row">{row.label}</th>
+                        <td>{row.withSkills}</td>
+                        <td>{row.withoutSkills}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p id="evaluation-note" className="muted section-note">{quality.comparison.note}</p>
+            </div>
+          )}
           {quality.caseStudy && (
             <div className="cases" style={{ marginTop: 24 }}>
               <CaseCard c={quality.caseStudy} n={1} showNo={false} />
